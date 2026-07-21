@@ -336,7 +336,7 @@ HIDE_TEXT_FROM_FILE(refs/tree-restconf-client-grouping.no-expand.txt)
        +-- idle-timeout?   uint16
        +-- endpoints
           +-- endpoint* [name]
-             +-- name               souping restconf-server-app-groupitring
+             +-- name               string
              +---u restconf-client-listen-stack-grouping]]></sourcecode>
 
             <t>Comments:</t>
