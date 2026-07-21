@@ -317,7 +317,7 @@ HIDE_TEXT_FROM_FILE(refs/tree-restconf-client-grouping.no-expand.txt)
     |     +-- name                  string
     |     +-- endpoints
     |     |  +-- endpoint* [name]
-    |     |     +-- name                                       string
+    |     |     +-- name            string
     |     |     +---u restconf-client-initiate-stack-grouping
     |     +-- connection-type
     |     |  +-- (connection-type)
@@ -336,7 +336,7 @@ HIDE_TEXT_FROM_FILE(refs/tree-restconf-client-grouping.no-expand.txt)
        +-- idle-timeout?   uint16
        +-- endpoints
           +-- endpoint* [name]
-             +-- name                                     string
+             +-- name               souping restconf-server-app-groupitring
              +---u restconf-client-listen-stack-grouping]]></sourcecode>
 
             <t>Comments:</t>
@@ -550,16 +550,16 @@ module ietf-restconf-client {
   namespace "urn:ietf:params:xml:ns:yang:ietf-restconf-client";
   prefix rcc;
 
-  import ietf-yang-types {
-    prefix yang;
-    reference
-      "RFC 9911: Common YANG Data Types";
-  }
-
   import ietf-tcp-server {
     prefix tcps;
     reference
       "RFC 9643: YANG Groupings for TCP Clients and TCP Servers";
+  }
+
+  import ietf-yang-types {
+    prefix yang;
+    reference
+      "RFC 9911: Common YANG Data Types";
   }
 
   import ietf-http-client {
@@ -572,7 +572,7 @@ module ietf-restconf-client {
     "IETF NETCONF (Network Configuration) Working Group";
 
   contact
-    "WG Web:   <https://datatracker.ietf.org/wg/netconf>
+    "WG Web:   https://datatracker.ietf.org/wg/netconf
      WG List:  NETCONF WG list <mailto:netconf@ietf.org>
 
      Author:   Kent Watsen <mailto:kent+ietf@watsen.net>";
@@ -1234,14 +1234,14 @@ Features:
     +-- listen! {listen}?
     |  +-- endpoints
     |     +-- endpoint* [name]
-    |        +-- name                                     string
+    |        +-- name               string
     |        +---u restconf-server-listen-stack-grouping
     +-- call-home! {callhome}?
        +-- restconf-client* [name]
           +-- name                  string
           +-- endpoints
           |  +-- endpoint* [name]
-          |     +-- name                                       string
+          |     +-- name            string
           |     +---u restconf-server-callhome-stack-grouping
           +-- connection-type
           |  +-- (connection-type)
@@ -1573,18 +1573,6 @@ module ietf-restconf-server {
   namespace "urn:ietf:params:xml:ns:yang:ietf-restconf-server";
   prefix rcs;
 
-  import ietf-yang-types {
-    prefix yang;
-    reference
-      "RFC 9911: Common YANG Data Types";
-  }
-
-  import ietf-inet-types {
-    prefix inet;
-    reference
-      "RFC 9911: Common YANG Data Types";
-  }
-
   import ietf-x509-cert-to-name {
     prefix x509c2n;
     reference
@@ -1609,10 +1597,16 @@ module ietf-restconf-server {
       "RFC 9645: YANG Groupings for TLS Clients and TLS Servers";
   }
 
-  import ietf-http-server {
-    prefix https;
+  import ietf-yang-types {
+    prefix yang;
     reference
-      "RFC 10009: YANG Groupings for HTTP Clients and HTTP Servers";
+      "RFC 9911: Common YANG Data Types";
+  }
+
+  import ietf-inet-types {
+    prefix inet;
+    reference
+      "RFC 9911: Common YANG Data Types";
   }
 
   import ietf-udp-server {
@@ -1620,12 +1614,18 @@ module ietf-restconf-server {
     reference
       "RFC 9984: YANG Groupings for UDP Clients and UDP Servers";
   }
+			
+  import ietf-http-server {
+    prefix https;
+    reference
+      "RFC 10009: YANG Groupings for HTTP Clients and HTTP Servers";
+  }
 
   organization
     "IETF NETCONF (Network Configuration) Working Group";
 
   contact
-    "WG Web:   <https://datatracker.ietf.org/wg/netconf>
+    "WG Web:   https://datatracker.ietf.org/wg/netconf
      WG List:  NETCONF WG list <mailto:netconf@ietf.org>
 
      Author:   Kent Watsen <mailto:kent+ietf@watsen.net>";
@@ -2247,9 +2247,8 @@ module ietf-restconf-server {
             that is designed to be accessed via YANG-based management
             protocols, such as the Network Configuration Protocol (NETCONF) <xref target="RFC6241"/> and RESTCONF
             <xref target="RFC8040"/>.  These YANG-based management protocols
-            (1) have to use a secure transport layer (e.g., Secure Shell (SSH) <xref target="RFC4252"/>,
-            TLS <xref target="RFC8446"/>, and QUIC <xref target="RFC9000"/>) and (2) have to use mutual
-            authentication.</t>
+            (1) have to use a secure transport layer and (2) have to use mutual
+            authentication (e.g., Secure Shell (SSH) <xref target="RFC4252"/>, TLS <xref target="RFC8446"/>, and QUIC <xref target="RFC9000"/>).</t>
         <t>The Network Configuration Access Control Model (NACM) <xref target="RFC8341"/>
             provides the means to restrict access for particular NETCONF or RESTCONF users to a
             preconfigured subset of all available NETCONF or RESTCONF protocol operations and
@@ -2289,9 +2288,8 @@ module ietf-restconf-server {
             that is designed to be accessed via YANG-based management
             protocols, such as the Network Configuration Protocol (NETCONF) <xref target="RFC6241"/> and RESTCONF
             <xref target="RFC8040"/>.  These YANG-based management protocols
-            (1) have to use a secure transport layer (e.g., Secure Shell (SSH) <xref target="RFC4252"/>,
-            TLS <xref target="RFC8446"/>, and QUIC <xref target="RFC9000"/>) and (2) have to use mutual
-            authentication.</t>
+            (1) have to use a secure transport layer and (2) have to use mutual
+            authentication (e.g., Secure Shell (SSH) <xref target="RFC4252"/>, TLS <xref target="RFC8446"/>, and QUIC <xref target="RFC9000"/>).</t>
         <t>The Network Configuration Access Control Model (NACM) <xref target="RFC8341"/>
             provides the means to restrict access for particular NETCONF or RESTCONF users to a
             preconfigured subset of all available NETCONF or RESTCONF protocol operations and
