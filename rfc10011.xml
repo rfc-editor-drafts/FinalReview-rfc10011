@@ -235,7 +235,7 @@ HIDE_TEXT_FROM_FILE(refs/tree-restconf-client-grouping.no-expand.txt)
     +-- http-client-parameters
     |  +---u httpc:http-client-grouping
     +-- restconf-client-parameters
-                +---u rcc:restconf-client-grouping]]></sourcecode>
+       +---u rcc:restconf-client-grouping]]></sourcecode>
 
             <t>Comments:</t>
             <ul>
@@ -243,9 +243,6 @@ HIDE_TEXT_FROM_FILE(refs/tree-restconf-client-grouping.no-expand.txt)
                   configuration for a full RESTCONF protocol stack for RESTCONF
                   clients that initiate connections to RESTCONF servers (as
                   opposed to receiving call-home connections).</li>
-              <li>The "transport" choice node enables transport options to be
-              configured. This document only defines an "https" option,
-                  but other options <bcp14>MAY</bcp14> be augmented in.</li>
               <li>
                 <t>For the referenced grouping statements:
                 </t>
@@ -541,7 +538,7 @@ rts</central-truststore-reference>
         <t>This YANG module has normative references to
           <xref target="RFC8040"/>, <xref target="RFC8071"/>,
           <xref target="RFC9643"/>,
-          <xref target="RFC9645"/>, <xref target="RFC9911"/>, and
+          <xref target="RFC9645"/>, <xref target="RFC9911"/>, <xref target="RFC9984"/>, and
         <xref target="RFC10009"/>.</t>
 
         <sourcecode type="yang" markers="true" name="ietf-restconf-client@2026-06-11.yang"><![CDATA[
@@ -1760,8 +1757,6 @@ module ietf-restconf-server {
          If no matching and valid cert-to-name list entry can be
          found, then the RESTCONF server MUST close the connection
          and MUST NOT accept RESTCONF messages over it.";
-      reference
-        "RFC 7407: A YANG Data Model for SNMP Configuration.";
       uses x509c2n:cert-to-name {
         refine "cert-to-name/fingerprint" {
           mandatory false;
@@ -2380,6 +2375,7 @@ module ietf-restconf-server {
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9642.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9643.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9645.xml"/>
+        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9984.xml"/>
 
 <!-- [RFC10009]
 draft-ietf-netconf-http-client-server-33 
@@ -2396,24 +2392,6 @@ companion doc
   <seriesInfo name="RFC" value="10009"/>
   <seriesInfo name="DOI" value="10.17487/RFC10009"/>
 </reference>
-
-<reference anchor="RFC9984" target="https://www.rfc-editor.org/info/rfc9984">
-  <front>
-    <title>YANG Groupings for UDP Clients and UDP Servers</title>
-    <author initials="A." surname="Huang-Feng" fullname="">
-    </author>
-    <author initials="P." surname="Francois" fullname="">
-    </author>
-      <author initials="K." surname="Watsen" fullname="Kent Watsen">
-         <organization>Watsen Networks</organization>
-      </author>
-    <date month='June' year='2026'/>
-  </front>
-  <seriesInfo name="RFC" value="9984"/>
-  <seriesInfo name="DOI" value="10.17487/RFC9984"/>
-</reference>
-
-
       </references>
       <references>
         <name>Informative References</name>
