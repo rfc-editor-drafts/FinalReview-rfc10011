@@ -33,8 +33,8 @@
       <name>Introduction</name>
 
       
-      <t>This document presents two YANG modules <xref target="RFC7950"/>:
-          one module to configure a RESTCONF client and the other module to
+      <t>This document presents two YANG 1.1. modules <xref target="RFC7950"/>:
+          one module to configure a RESTCONF client <xref tareget="RFC8040"/> and the other module to
           configure a RESTCONF server.  These modules support both standard
           RESTCONF <xref target="RFC8040"/> and RESTCONF Call Home
           connections <xref target="RFC8071"/>.</t>
@@ -47,11 +47,10 @@
         <name>Relation to Other RFCs</name>
 
 	
-        <t>This document presents two YANG modules <xref target="RFC7950"/>
-            that are part of a collection of RFCs that work together
-            to, ultimately, support the configuration of both the clients
-            and servers of both the Network
-Configuration Protocol (NETCONF) <xref target="RFC6241"/> and
+        <t>This document presents two YANG 1.1 modules <xref target="RFC7950"/>
+            that belong to a collection of RFCs that are designed to work together. Ultimately,
+            these modules support the configuration of clients and servers for
+            both the Network Configuration Protocol (NETCONF) <xref target="RFC6241"/> and 
             RESTCONF protocol <xref target="RFC8040"/>.</t>
         <t> Primary dependency relationships between the YANG groupings
             defined in the various RFCs are presented in the below diagram.
@@ -87,7 +86,7 @@ tcp-client-server      |     /         |      |
                |    |        |              |      |       |
                netconf-client-server       restconf-client-server]]></artwork>
 
-          <table align="left" anchor="LabelDiagram">
+          <table align="center" anchor="LabelDiagram">
           <name>Label in Diagram to RFC Mapping</name>
           <tbody>
             <tr>
@@ -152,6 +151,14 @@ tcp-client-server      |     /         |      |
     when, and only when, they appear in all capitals, as shown here.
         </t>
       </section>
+	<section>
+		<name>Conventions</name>
+		<t>Various examples in this document use XML <xref target="W3C.REC-xml-20081126"/>
+  encoding.</t>
+
+  <t>Various examples in this document contain long lines that may be 
+  folded, as described in <xref target="RFC8792"/>.</t>
+	</section>
 
       <section>
         <name>Adherence to the NMDA</name>
@@ -2368,10 +2375,11 @@ module ietf-restconf-server {
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9911.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7407.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7950.xml"/>
-        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8040.xml"/>
+        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8040.xml"/>a
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8071.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8341.xml"/>
+		<xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8792.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9642.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9643.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9645.xml"/>
@@ -2447,6 +2455,22 @@ Companion document YYY3: in RE state as of 5/26/25
   <seriesInfo name="DOI" value="10.17487/RFCYYY3"/>
 </reference>
 -->
+
+<reference anchor="W3C.REC-xml-20081126"
+target="https://www.w3.org/TR/2008/REC-xml-20081126/">
+  <front>
+    <title>Extensible Markup Language (XML) 1.0                                                                                 
+    (Fifth Edition)</title>
+    <author initials="T." surname="Bray" fullname="Tim Bray"/>
+    <author initials="J." surname="Paoli" fullname="Jean Paoli"/>
+    <author initials="C.M." surname="Sperberg-McQueen" fullname="C. M. Sperberg-McQueen"/>
+    <author initials="E." surname="Maler" fullname="Eve Maler"/>
+    <author initials="F." surname="Yergeau" fullname="François Yergeau"/>
+    <date month="November" year="2008"/>
+  </front>ti
+norma  <seriesInfo name="World Wide Web Consortium Recommendation" value="REC-xml-20081126"/>
+</reference>
+		  
       </references>
       
     </references>
