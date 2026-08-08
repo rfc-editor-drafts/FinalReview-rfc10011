@@ -187,7 +187,7 @@ tcp-client-server      |     /         |      |
           <name>Features</name>
           <t>The following diagram lists all the "feature" statements
               defined in the "ietf-restconf-client" module:</t>
-          <sourcecode type="yangtree"><![CDATA[
+          <sourcecode type=""><![CDATA[
 Features:
   +-- https-initiate
   +-- http-listen
@@ -247,7 +247,7 @@ HIDE_TEXT_FROM_FILE(refs/tree-restconf-client-grouping.no-expand.txt)
               <li>The "restconf-client-initiate-stack-grouping" defines the
                   configuration for a full RESTCONF protocol stack for RESTCONF
                   clients that initiate connections to RESTCONF servers (as
-                  opposed to receiving call-home connections).</li>
+                  opposed to receiving call home connections).</li>
               <li>
                 <t>For the referenced grouping statements:
                 </t>
@@ -282,7 +282,7 @@ HIDE_TEXT_FROM_FILE(refs/tree-restconf-client-grouping.no-expand.txt)
             <ul>
               <li>The "restconf-client-listen-stack-grouping" defines the
                   configuration for a full RESTCONF protocol stack for RESTCONF
-                  clients that receive call-home connections from RESTCONF servers.</li>
+                  clients that receive call home connections from RESTCONF servers.</li>
               <li>The "transport" choice node enables either the HTTP or
                   HTTPS transport to be configured, with each option
                   enabled by a "feature" statement.  Whilst RESTCONF <xref target="RFC8040"/> 
@@ -343,7 +343,7 @@ HIDE_TEXT_FROM_FILE(refs/tree-restconf-client-grouping.no-expand.txt)
             <ul>
               <li>The "restconf-client-app-grouping" defines the configuration
                   for a RESTCONF client that supports both initiating connections
-                  to RESTCONF servers and receiving call-home connections from
+                  to RESTCONF servers and receiving call home connections from
                   RESTCONF servers.</li>
               <li>Both the "initiate" and "listen" subtrees are predicated by
                   "feature" statements.</li>
@@ -387,7 +387,7 @@ module: ietf-restconf-client
       <section>
         <name>Example Usage</name>
         <t>The following example illustrates configuring a RESTCONF
-          client to initiate connections as well as to listen for call-home
+          client to initiate connections as well as to listen for call home
           connections.</t>
         <t>This example is consistent with the examples presented in
             <xref section="2.2.1" target="RFC9641"/> and
@@ -624,7 +624,7 @@ module ietf-restconf-client {
   feature listen {
     description
       "The 'listen' feature indicates that the RESTCONF client
-       supports listening for incoming RESTCONF server call-home
+       supports listening for incoming RESTCONF server call home
        connections.";
     reference
       "RFC 8071: NETCONF Call Home and RESTCONF Call Home";
@@ -634,7 +634,7 @@ module ietf-restconf-client {
     if-feature "listen";
     description
       "The 'tcp-listen' feature indicates that the RESTCONF client
-       supports listening for incoming RESTCONF server call-home
+       supports listening for incoming RESTCONF server call home
        connections over TCP (e.g., HTTP/1 or HTTP/2).";
     reference
       "RFC 8071: NETCONF Call Home and RESTCONF Call Home";
@@ -1053,7 +1053,7 @@ module ietf-restconf-client {
     <section>
       <name>The "ietf-restconf-server" YANG Module</name>
       <t>The RESTCONF server YANG data model presented in this section supports
-        both listening for connections and initiating call-home
+        both listening for connections and initiating call home
         connections.</t>
       <t>YANG feature statements are used to enable implementations to
         advertise which potentially uncommon parts of the data model the
@@ -1067,16 +1067,14 @@ module ietf-restconf-client {
           <t>The following diagram lists all the "feature" statements
           defined in the "ietf-restconf-server" module:</t>
 	  
-          <sourcecode type="yangtree"><![CDATA[
+          <sourcecode type=""><![CDATA[
 Features:
   +-- http-listen
   +-- https-listen
   +-- https-call-home
   +-- central-restconf-server-supported]]></sourcecode>
-          <!--<aside>-->
               <t>The diagram above uses syntax that is similar to but not
                 defined in <xref target="RFC8340"/>.</t>
-          <!--</aside>-->
           </section>
         <section toc="exclude">
           <name>Groupings</name>
@@ -1162,7 +1160,7 @@ Features:
               <li>The "restconf-server-listen-stack-grouping" defines the
                   configuration for a full RESTCONF protocol stack for RESTCONF
                   servers that listen for connections from RESTCONF clients
-                  (as opposed to initiating call-home connections).</li>
+                  (as opposed to initiating call home connections).</li>
               <li>The "transport" choice node enables either the HTTP or HTTPS
                   transport to be configured, with each option enabled by a
                   "feature" statement. The HTTP option is provided to support
@@ -1205,7 +1203,7 @@ Features:
             <ul>
               <li>The "restconf-server-callhome-stack-grouping" defines the
                   configuration for a full RESTCONF protocol stack for RESTCONF
-                  servers that initiate call-home connections
+                  servers that initiate call home connections
                   to RESTCONF clients.</li>
               <li>For the referenced grouping statements:
 <ul spacing="compact"><li>The "http-client-grouping" grouping is discussed in
@@ -1262,7 +1260,7 @@ Features:
             <ul>
               <li>The "restconf-server-app-grouping" defines the configuration
                   for a RESTCONF server that supports both listening for connections
-                  from RESTCONF clients and initiating call-home connections to
+                  from RESTCONF clients and initiating call home connections to
                   RESTCONF clients.</li>
               <li>Both the "listen" and "call-home" subtrees must be enabled by
                   "feature" statements.</li>
@@ -2268,8 +2266,10 @@ module ietf-restconf-server {
 	
         <t>This YANG module uses groupings from
             other YANG modules that define nodes that may be considered
-            sensitive or vulnerable in network environments. Refer to the Security Considerations of <xref target="RFC9643" format="default"/> and <xref target="RFC10009" format="default"/> for information as to which nodes may be considered sensitive
-            or vulnerable in network environments.</t>
+            sensitive or vulnerable in network environments. For information as to which nodes may be considered
+sensitive or vulnerable in network environments, refer to the Security Considerations
+of <xref target="RFC9643"/>, <xref target="RFC10009"/>, and other RFCs defining nodes upon which this module
+relies.</t>
         <t>This YANG module uses groupings defined in
             other RFCs that define data nodes that do set the NACM "default-deny-all"
             and "default-deny-write" extensions.</t>
