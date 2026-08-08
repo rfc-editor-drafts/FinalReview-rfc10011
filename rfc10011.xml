@@ -252,10 +252,6 @@ HIDE_TEXT_FROM_FILE(refs/tree-restconf-client-grouping.no-expand.txt)
                 <t>For the referenced grouping statements:
                 </t>
                 <ul spacing="compact">
-                  <li>The "tcp-client-grouping" grouping is discussed in
-                      <xref section="3.1.2.1" target="RFC9643"/>.</li>
-                  <li>The "tls-client-grouping" grouping is discussed in
-                      <xref section="3.1.2.1" target="RFC9645"/>.</li>
 				<li>The "restconf-client-grouping" grouping is discussed in
                     <xref target="restconf-client-grouping"/> in this document.</li>
                   <li>The "http-client-grouping" grouping is discussed in
