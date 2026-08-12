@@ -255,7 +255,7 @@ HIDE_TEXT_FROM_FILE(refs/tree-restconf-client-grouping.no-expand.txt)
 				<li>The "restconf-client-grouping" grouping is discussed in
                     <xref target="restconf-client-grouping"/> in this document.</li>
                   <li>The "http-client-grouping" grouping is discussed in
-                      <xref section="3.1.2.1" target="RFC10009"/>.</li>
+                      <xref section="2.1.2.1" target="RFC10009"/>.</li>
                   <!--<li>The "restconf-client-grouping" grouping is discussed in
                     <xref target="restconf-client-grouping"/> in this document.</li>-->
                   </ul>
@@ -298,7 +298,7 @@ HIDE_TEXT_FROM_FILE(refs/tree-restconf-client-grouping.no-expand.txt)
                   <li>The "tls-client-grouping" grouping is discussed in
                       <xref section="3.1.2.1" target="RFC9645"/>.</li>
                   <li>The "http-client-grouping" grouping is discussed in
-                      <xref section="3.1.2.1" target="RFC10009"/>.</li>
+                      <xref section="2.1.2.1" target="RFC10009"/>.</li>
                   <!--<li>The "restconf-client-grouping" grouping is discussed in
                     <xref target="restconf-client-grouping"/> in this document.</li>-->
                   </ul>
@@ -1207,7 +1207,7 @@ Features:
                   to RESTCONF clients.</li>
               <li>For the referenced grouping statements:
 <ul spacing="compact"><li>The "http-client-grouping" grouping is discussed in
-         <xref target="RFC10009" section="http-server-grouping"/>.</li>
+         <xref section="2.1.2.1" target="RFC10009"/>.</li>
     <li>The "restconf-server-grouping" is discussed in <xref target="restconf-server-grouping"/></li></ul>
               <li>
                 <t>For the referenced grouping statements:
