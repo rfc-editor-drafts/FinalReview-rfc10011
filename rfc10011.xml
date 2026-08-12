@@ -1175,7 +1175,7 @@ Features:
                   <li>The "tls-server-grouping" grouping is discussed in
                       <xref section="4.1.2.1" target="RFC9645"/>.</li>
                   <li>The "http-server-grouping" grouping is discussed in
-                      <xref section="4.1.2.1" target="RFC10009"/>.</li>
+                      <xref section="3.1.2.1" target="RFC10009"/>.</li>
                   <li>The "restconf-server-grouping" is discussed in <xref target="restconf-server-grouping"/>.</li>
                 </ul>
               </li>
@@ -1218,7 +1218,7 @@ Features:
                   <li>The "tls-server-grouping" grouping is discussed in
                       <xref section="4.1.2.1" target="RFC9645"/>.</li>
                   <li>The "http-server-grouping" grouping is discussed in
-                      <xref section="4.1.2.1" target="RFC10009"/>.</li>
+                      <xref section="3.1.2.1" target="RFC10009"/>.</li>
                   <li>The "restconf-server-grouping" is discussed in <xref target="restconf-server-grouping"/>.</li>
                 </ul>
               </li>
