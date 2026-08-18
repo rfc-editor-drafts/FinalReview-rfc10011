@@ -23,7 +23,7 @@
     <workgroup>netconf</workgroup>
 
     <abstract>
-      <t>This document presents two YANG modules: one module to configure a
+      <t>This document presents two YANG 1.1 modules: one module to configure a
           RESTCONF client and the other module to configure a RESTCONF server.
           These modules support both standard RESTCONF and RESTCONF Call Home connections.</t>
     </abstract>
