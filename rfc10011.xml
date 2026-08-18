@@ -1082,7 +1082,7 @@ Features:
           <ul spacing="compact">
             <li>restconf-server-grouping</li>
             <li>restconf-server-listen-stack-grouping</li>
-            <li>restconf-server-callhome-stack-grouping</li>
+            <li>restconf-server-call-home-stack-grouping</li>
             <li>restconf-server-app-grouping</li>
           </ul>
           <t>Each of these groupings are presented in the following subsections.</t>
@@ -1182,11 +1182,11 @@ Features:
             </ul>
           </section>
           <section anchor="restconf-server-callhome-stack-grouping">
-            <name>The "restconf-server-callhome-stack-grouping" Grouping</name>
+            <name>The "restconf-server-call-home-stack-grouping" Grouping</name>
             <t>The following tree diagram <xref target="RFC8340"/> illustrates the
-                "restconf-server-callhome-stack-grouping" grouping:</t>
+                "restconf-server-call-home-stack-grouping" grouping:</t>
             <sourcecode type="yangtree"><![CDATA[
-  grouping restconf-server-callhome-stack-grouping:
+  grouping restconf-server-call-home-stack-grouping:
     +-- (transport)
        +--:(http-over-tls) {tls-callhome}?
           +-- http-over-tls
@@ -1201,7 +1201,7 @@ Features:
 
             <t>Comments:</t>
             <ul>
-              <li>The "restconf-server-callhome-stack-grouping" defines the
+              <li>The "restconf-server-call-home-stack-grouping" defines the
                   configuration for a full RESTCONF protocol stack for RESTCONF
                   servers that initiate call home connections
                   to RESTCONF clients.</li>
@@ -1270,7 +1270,7 @@ Features:
                 <ul spacing="compact">
                   <li>The "restconf-server-listen-stack-grouping" grouping is discussed in
                       <xref target="restconf-server-listen-stack-grouping"/>.</li>
-                  <li>The "restconf-server-callhome-stack-grouping" grouping is discussed in
+                  <li>The "restconf-server-call-home-stack-grouping" grouping is discussed in
                       <xref target="restconf-server-callhome-stack-grouping"/>.</li>
                 </ul>
               </li>
@@ -1704,19 +1704,19 @@ module ietf-restconf-server {
       "RFC 8040: RESTCONF Protocol";
   }
 
-  feature callhome {
+  feature call-home {
     description
-      "The 'callhome' feature indicates that the RESTCONF server
+      "The 'call-home' feature indicates that the RESTCONF server
        supports initiating 'call home' connections to RESTCONF
        clients.";
     reference
       "RFC 8071: NETCONF Call Home and RESTCONF Call Home";
   }
 
-  feature tls-callhome {
-    if-feature "callhome";
+  feature tls-call-home {
+    if-feature "call-home";
     description
-      "The 'tls-callhome' feature indicates that the RESTCONF server
+      "The 'tls-call-home' feature indicates that the RESTCONF server
        supports initiating 'call home' connections to RESTCONF
        clients using TLS per RFC 8071.";
     reference
@@ -1941,7 +1941,7 @@ module ietf-restconf-server {
     }
   }
 
-  grouping restconf-server-callhome-stack-grouping {
+  grouping restconf-server-call-home-stack-grouping {
     description
       "A grouping for configuring a RESTCONF server call home
        protocol stack for a single outbound connection.";
@@ -1950,7 +1950,7 @@ module ietf-restconf-server {
       description
         "Selects between available transports.";
       case http-over-tls {
-        if-feature "tls-callhome";
+        if-feature "tls-call-home";
         container http-over-tls {
           description
             "Configures RESTCONF server stack assuming that
@@ -2022,7 +2022,7 @@ module ietf-restconf-server {
       }
     } // listen
     container call-home {
-      if-feature "callhome";
+      if-feature "call-home";
       presence
         "Identifies that the server has been configured to initiate
          call home connections.  This statement is present so the
@@ -2058,7 +2058,7 @@ module ietf-restconf-server {
               description
                 "An arbitrary name for this endpoint.";
             }
-            uses restconf-server-callhome-stack-grouping;
+            uses restconf-server-call-home-stack-grouping;
           }
         }
         container connection-type {
