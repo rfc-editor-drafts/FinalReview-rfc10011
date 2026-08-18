@@ -283,12 +283,7 @@ HIDE_TEXT_FROM_FILE(refs/tree-restconf-client-grouping.no-expand.txt)
               <li>The "restconf-client-listen-stack-grouping" defines the
                   configuration for a full RESTCONF protocol stack for RESTCONF
                   clients that receive call home connections from RESTCONF servers.</li>
-              <li>The "transport" choice node enables either the HTTP or
-                  HTTPS transport to be configured, with each option
-                  enabled by a "feature" statement.  Whilst RESTCONF <xref target="RFC8040"/> 
-                  requires HTTPS, an HTTP option is provided to support
-                  cases where a TLS-terminator is deployed in front of
-                  the RESTCONF client.</li>
+              <li>The "transport" choice node selects the HTTP-level transport to configure, with each case enabled by a "feature" statement. The "tcp" case in used for HTTP up to and including HTTP/2. Other transports MAY be augmented into the "transport" choice node by future efforts.</li>
               <li>
                 <t>For the referenced grouping statements:
                 </t>
@@ -1161,11 +1156,7 @@ Features:
                   configuration for a full RESTCONF protocol stack for RESTCONF
                   servers that listen for connections from RESTCONF clients
                   (as opposed to initiating call home connections).</li>
-              <li>The "transport" choice node enables either the HTTP or HTTPS
-                  transport to be configured, with each option enabled by a
-                  "feature" statement. The HTTP option is provided to support
-                  cases where a TLS-terminator is deployed in front of
-                  the RESTCONF server.</li>
+              <li>The "transport" choice node selects the HTTP-level transport to configure, with each case enabled by a "feature" statement. The "http-over-tcp" and "http-over-tls" cases are used for HTTP up to and including HTTP/2. The "http-over-quic" case is used for HTTP/3. Other transports MAY be augmented into the "transport" choice node by future efforts.</li>
               <li>
                 <t>For the referenced grouping statements:
                 </t>
@@ -1205,6 +1196,8 @@ Features:
                   configuration for a full RESTCONF protocol stack for RESTCONF
                   servers that initiate call home connections
                   to RESTCONF clients.</li>
+				<li>The "transport" choice node enables transport options to be configured. This document only defines an "http-over-tls" option, but
+      other options MAY be augmented in.</li>
               <li>For the referenced grouping statements:
 <ul spacing="compact"><li>The "http-client-grouping" grouping is discussed in
          <xref section="2.1.2.1" target="RFC10009"/>.</li>
