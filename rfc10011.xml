@@ -1241,7 +1241,7 @@ Features:
           +-- endpoints
           |  +-- endpoint* [name]
           |     +-- name            string
-          |     +---u restconf-server-callhome-stack-grouping
+          |     +---u restconf-server-call-home-stack-grouping
           +-- connection-type
           |  +-- (connection-type)
           |     +--:(persistent-connection)
