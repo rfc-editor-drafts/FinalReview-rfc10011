@@ -283,7 +283,7 @@ HIDE_TEXT_FROM_FILE(refs/tree-restconf-client-grouping.no-expand.txt)
               <li>The "restconf-client-listen-stack-grouping" defines the
                   configuration for a full RESTCONF protocol stack for RESTCONF
                   clients that receive call home connections from RESTCONF servers.</li>
-              <li>The "transport" choice node selects the HTTP-level transport to configure, with each case enabled by a "feature" statement. The "tcp" case in used for HTTP up to and including HTTP/2. Other transports MAY be augmented into the "transport" choice node by future efforts.</li>
+              <li>The "transport" choice node selects the HTTP-level transport to configure, with each case enabled by a "feature" statement. The "tcp" case is used for HTTP up to and including HTTP/2. Other transports MAY be augmented into the "transport" choice node by future efforts.</li>
               <li>
                 <t>For the referenced grouping statements:
                 </t>
