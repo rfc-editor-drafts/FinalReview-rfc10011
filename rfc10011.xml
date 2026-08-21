@@ -803,7 +803,7 @@ module ietf-restconf-client {
          descendant nodes do not imply that this node must be
          configured.";
       description
-        "Configures client-initiating underlying TCP connections.";
+        "Configures client-initiating underlying connections.";
       list restconf-server {
         key "name";
         min-elements 1;
@@ -1000,7 +1000,7 @@ module ietf-restconf-client {
          This statement is present so the mandatory descendant nodes
          do not imply that this node must be configured.";
       description
-        "Configures the client to accept call-home TCP connections.";
+        "Configures the client to accept call-home connections.";
       leaf idle-timeout {
         type uint16;
         units "seconds";
@@ -1179,7 +1179,7 @@ Features:
             <sourcecode type="yangtree"><![CDATA[
   grouping restconf-server-call-home-stack-grouping:
     +-- (transport)
-       +--:(http-over-tls) {tls-callhome}?
+       +--:(http-over-tls) {tls-call-home}?
           +-- http-over-tls
              +-- tcp-client-parameters
              |  +---u tcpc:tcp-client-grouping
@@ -1228,7 +1228,7 @@ Features:
     |     +-- endpoint* [name]
     |        +-- name               string
     |        +---u restconf-server-listen-stack-grouping
-    +-- call-home! {callhome}?
+    +-- call-home! {call-home}?
        +-- restconf-client* [name]
           +-- name                  string
           +-- endpoints
