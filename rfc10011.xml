@@ -23,7 +23,7 @@
     <workgroup>netconf</workgroup>
 
     <abstract>
-      <t>This document presents two YANG 1.1 modules: one module to configure a
+      <t>This document introduces two YANG 1.1 modules: one module to configure a
           RESTCONF client and the other module to configure a RESTCONF server.
           These modules support both standard RESTCONF and RESTCONF Call Home connections.</t>
     </abstract>
@@ -573,7 +573,7 @@ module ietf-restconf-client {
      Author:   Kent Watsen <mailto:kent+ietf@watsen.net>";
 
   description
-    "This module contains a collection of YANG definitions
+    "This YANG module contains a collection of YANG definitions
      for configuring RESTCONF clients.
 
      The key words 'MUST', 'MUST NOT', 'REQUIRED', 'SHALL',
@@ -593,13 +593,17 @@ module ietf-restconf-client {
      Legal Provisions Relating to IETF Documents
      (https://trustee.ietf.org/license-info).
 
+	 All revisions of IETF and IANA published modules can be
+     found at the YANG Parameters registry group
+     (https://www.iana.org/assignments/yang-parameters).
+
      This version of this YANG module is part of RFC 10011
      (https://www.rfc-editor.org/info/rfc10011); see the RFC
      itself for full legal notices.";
 
   revision 2026-06-11 {
     description
-      "Initial version";
+      "Initial revision";
     reference
       "RFC 10011: A YANG Data Model for RESTCONF Clients and 
                   Servers";
@@ -1622,7 +1626,7 @@ module ietf-restconf-server {
      Author:   Kent Watsen <mailto:kent+ietf@watsen.net>";
 
   description
-    "This module contains a collection of YANG definitions
+    "This YANG module contains a collection of YANG definitions
      for configuring RESTCONF servers.
 
      The key words 'MUST', 'MUST NOT', 'REQUIRED', 'SHALL',
@@ -1642,13 +1646,17 @@ module ietf-restconf-server {
      Legal Provisions Relating to IETF Documents
      (https://trustee.ietf.org/license-info).
 
+     All revisions of IETF and IANA published modules can be
+     found at the YANG Parameters registry group
+     (https://www.iana.org/assignments/yang-parameters).
+
      This version of this YANG module is part of RFC 10011
      (https://www.rfc-editor.org/info/rfc10011); see the RFC
      itself for full legal notices.";
 
   revision 2026-06-11 {
     description
-      "Initial version";
+      "Initial revision";
     reference
       "RFC 10011: A YANG Data Model for RESTCONF Clients and 
                   Servers";
