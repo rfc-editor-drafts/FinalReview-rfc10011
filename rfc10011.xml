@@ -1,129 +1,63 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='UTF-8'?>
+
 <!DOCTYPE rfc [
   <!ENTITY nbsp    "&#160;">
   <!ENTITY zwsp   "&#8203;">
   <!ENTITY nbhy   "&#8209;">
   <!ENTITY wj     "&#8288;">
 ]>
-<?rfc toc="yes"?>
-<?rfc symrefs="yes"?>
-<?rfc sortrefs="yes" ?>
-<?rfc compact="yes"?>
-<?rfc subcompact="no"?>
-<?rfc linkmailto="no" ?>
-<?rfc editing="no" ?>
-<?rfc comments="yes" ?>
-<?rfc inline="yes"?>
-<?rfc rfcedstyle="yes"?>
-<?rfc-ext allow-markup-in-artwork="yes" ?>
-<?rfc-ext include-index="no" ?>
-<!--<?rfc strict="no"?> -->
-<rfc xmlns:xi="http://www.w3.org/2001/XInclude" consensus="true" category="std" submissionType="IETF" ipr="trust200902" docName="draft-ietf-netconf-restconf-client-server-45" tocInclude="true" symRefs="true" sortRefs="true" version="3">
-  <!-- xml2rfc v2v3 conversion 3.31.0 -->
+
+<rfc xmlns:xi="http://www.w3.org/2001/XInclude" consensus="true" category="std" submissionType="IETF" ipr="trust200902" docName="draft-ietf-netconf-restconf-client-server-45" number="10011" updates="" obsoletes="" xml:lang="en" tocInclude="true" symRefs="true" sortRefs="true" version="3">
+
   <front>
     <title abbrev="YANG for RESTCONF Clients and Servers">A YANG Data Model for RESTCONF Clients and Servers</title>
-    <seriesInfo name="Internet-Draft" value="draft-ietf-netconf-restconf-client-server-45"/>
+    <seriesInfo name="RFC" value="10011"/>
     <author initials="K." surname="Watsen" fullname="Kent Watsen">
       <organization>Watsen Networks</organization>
       <address>
         <email>kent+ietf@watsen.net</email>
       </address>
     </author>
-    <date/>
-    <area>Operations</area>
-    <workgroup>NETCONF Working Group</workgroup>
+    <date month="July" year="2026"/>
+    <area>OPS</area>
+    <workgroup>netconf</workgroup>
+
     <abstract>
-      <t>This document presents two YANG modules, one module to configure a
+      <t>This document introduces two YANG 1.1 modules: one module to configure a
           RESTCONF client and the other module to configure a RESTCONF server.
-          These modules support both standard and RESTCONF Call Home connections.</t>
+          These modules support both standard RESTCONF and RESTCONF Call Home connections.</t>
     </abstract>
-    <note>
-      <name>Editorial Note (To be removed by RFC Editor)</name>
-      <t>This draft contains placeholder values that need to be replaced
-          with finalized values at the time of publication.  This note summarizes
-          all of the substitutions that are needed.  No other RFC Editor
-          instructions are specified elsewhere in this document.</t>
-      <t>Artwork in this document contains shorthand references to drafts in
-          progress.  Please apply the following replacements (note: not all may be present):
-      </t>
-      <ul spacing="normal">
-        <li>
-          <t><tt>GGGG</tt> --&gt; the assigned RFC value for draft-ietf-netconf-http-client-server</t>
-        </li>
-        <li>
-          <t><tt>HHHH</tt> --&gt; the assigned RFC value for draft-ietf-netconf-netconf-client-server</t>
-        </li>
-        <li>
-          <t><tt>IIII</tt> --&gt; the assigned RFC value for this draft</t>
-        </li>
-        <li>
-          <t><tt>JJJJ</tt> --&gt; the assigned RFC value for draft-ietf-netconf-udp-client-server</t>
-        </li>
-      </ul>
-      <t>Artwork in this document contains placeholder values for the date of publication of this
-        draft.  Please apply the following replacement:
-      </t>
-      <ul spacing="normal">
-        <li>
-          <t><tt>2025-12-04</tt> --&gt; the publication date of this draft</t>
-        </li>
-      </ul>
-      <t>The "Relation to other RFCs" section <xref target="collective-effort"/> contains
-          the text "one or more YANG modules" and, later, "modules".  This text is sourced
-          from a file in a context where it is unknown how many modules a draft defines.
-          The text is not wrong as is, but it may be improved by stating more directly how
-          many modules are defined.</t>
-      <t>The "Relation to other RFCs" section <xref target="collective-effort"/> contains
-          a self-reference to this draft, along with a corresponding reference in
-          the Appendix.  Please replace the self-reference in this section with "This RFC"
-          (or similar) and remove the self-reference in the "Normative/Informative References"
-          section, whichever it is in.</t>
-      <t>Tree-diagrams in this draft may use the '\' line-folding mode defined in RFC 8792.
-          However, nicer-to-the-eye is when the '\\' line-folding mode is used.  The AD suggested
-          suggested putting a request here for the RFC Editor to help convert "ugly" '\' folded
-          examples to use the '\\' folding mode.  "Help convert" may be interpreted as, identify
-          what looks ugly and ask the authors to make the adjustment.</t>
-      <t>Due to a bug in the pyang tool used to create tree diagrams, some "key" nodes appear as
-           optional (i.e., have a '?' postfix).  Ideally the '?' character is removed in the tree
-           diagrams for "key" nodes.  Recipe: search for lists using the string "* [", then note
-           the nodes appearing in the square brackets (e.g., "* [name]"), then look for matching child
-           nodes and remove the '?' characters (e.g., "name?" becomes "name").</t>
-      <t>The following Appendix section is to be removed prior to publication:
-      </t>
-      <ul spacing="normal">
-        <li>
-          <t><xref target="change-log"/>.  Change Log</t>
-        </li>
-      </ul>
-    </note>
   </front>
   <middle>
     <section>
       <name>Introduction</name>
-      <t>This document presents two YANG <xref target="RFC7950"/> modules,
-          one module to configure a RESTCONF client and the other module to
+
+      
+      <t>This document presents two YANG 1.1. modules <xref target="RFC7950"/>:
+          one module to configure a RESTCONF client <xref target="RFC8040"/> and the other module to
           configure a RESTCONF server.  These modules support both standard
           RESTCONF <xref target="RFC8040"/> and RESTCONF Call Home
-          <xref target="RFC8071"/> connections.</t>
+          connections <xref target="RFC8071"/>.</t>
       <t>Both modules support HTTPS, RESTCONF's required transport, whether
-          by TLS <xref target="RFC8446"/> or QUIC <xref target="RFC9000"/>.
+          by TLS <xref target="RFC9846"/> or QUIC <xref target="RFC9000"/>.
           The YANG module configuring RESTCONF servers additionally
           supports HTTP, enabling the RESTCONF server to be deployed
           behind a TLS-terminator.</t>
       <section anchor="collective-effort">
-        <name>Relation to other RFCs</name>
-        <t>This document presents one or more YANG modules <xref target="RFC7950"/>
-            that are part of a collection of RFCs that work together
-            to, ultimately, support the configuration of both the clients
-            and servers of both the NETCONF <xref target="RFC6241"/> and
-            RESTCONF <xref target="RFC8040"/> protocols.</t>
+        <name>Relation to Other RFCs</name>
+
+	
+        <t>This document presents two YANG 1.1 modules <xref target="RFC7950"/>
+            that belong to a collection of RFCs that are designed to work together. Ultimately,
+            these modules support the configuration of clients and servers for
+            both the Network Configuration Protocol (NETCONF) <xref target="RFC6241"/> and 
+            RESTCONF protocol <xref target="RFC8040"/>.</t>
         <t> Primary dependency relationships between the YANG groupings
-            defined in the various RFCs is presented in the below diagram.
-            In some cases, a draft may define secondary groupings that
+            defined in the various RFCs are presented in the below diagram.
+            In some cases, a document may define secondary groupings that
             introduce dependencies not illustrated in the diagram.
             The labels in the diagram are a shorthand name for the defining
-            RFC.  The citation reference for shorthand name is provided below
-            the diagram.</t>
+            RFC.  The citation reference for the shorthand name is provided in <xref target="LabelDiagram"/>.</t>
         <t>Please note that the arrows in the diagram point from referencer
             to referenced.  For example, the "crypto-types" RFC does not
             have any dependencies, whilst the "keystore" RFC depends on the
@@ -150,11 +84,9 @@ tcp-client-server      |     /         |      |
    +-----------+    |        |              |      |       |
                |    |        |              |      |       |
                |    |        |              |      |       |
-            netconf-client-server       restconf-client-server
+               netconf-client-server       restconf-client-server]]></artwork>
 
-]]></artwork>
-        <!-- RFC Editor: is there anyway to flush-left the table in PDF/HTML views? -->
-          <table>
+          <table align="center" anchor="LabelDiagram">
           <name>Label in Diagram to RFC Mapping</name>
           <tbody>
             <tr>
@@ -191,32 +123,43 @@ tcp-client-server      |     /         |      |
               <td>
                 <xref target="RFC9645"/></td>
             </tr>
-            <tr>
+	     <tr>
               <td>http-client-server</td>
               <td>
-                <xref target="I-D.ietf-netconf-http-client-server"/></td>
+                <xref target="RFC10009"/></td>
             </tr>
             <tr>
               <td>netconf-client-server</td>
               <td>
-                <xref target="I-D.ietf-netconf-netconf-client-server"/></td>
+                <xref target="RFC10010"/></td>
             </tr>
             <tr>
               <td>restconf-client-server</td>
               <td>
-                <xref target="I-D.ietf-netconf-restconf-client-server"/></td>
+                RFC 10011</td>
             </tr>
           </tbody>
         </table>
       </section>
       <section>
         <name>Specification Language</name>
-        <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
-            NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED",
-            "MAY", and "OPTIONAL" in this document are to be interpreted as
-            described in BCP 14 <xref target="RFC2119"/> <xref target="RFC8174"/>
-            when, and only when, they appear in all capitals, as shown here.</t>
+        <t>
+    The key words "<bcp14>MUST</bcp14>", "<bcp14>MUST NOT</bcp14>", "<bcp14>REQUIRED</bcp14>", "<bcp14>SHALL</bcp14>", "<bcp14>SHALL
+    NOT</bcp14>", "<bcp14>SHOULD</bcp14>", "<bcp14>SHOULD NOT</bcp14>", "<bcp14>RECOMMENDED</bcp14>", "<bcp14>NOT RECOMMENDED</bcp14>",
+    "<bcp14>MAY</bcp14>", and "<bcp14>OPTIONAL</bcp14>" in this document are to be interpreted as
+    described in BCP&nbsp;14 <xref target="RFC2119"/> <xref target="RFC8174"/> 
+    when, and only when, they appear in all capitals, as shown here.
+        </t>
       </section>
+	<section>
+		<name>Conventions</name>
+		<t>Various examples in this document use XML <xref target="W3C.REC-xml-20081126"/>
+  encoding.</t>
+
+  <t>Various examples in this document contain long lines that may be 
+  folded, as described in <xref target="RFC8792"/>.</t>
+	</section>
+
       <section>
         <name>Adherence to the NMDA</name>
         <t>This document is compliant with the Network Management Datastore
@@ -224,14 +167,14 @@ tcp-client-server      |     /         |      |
             described in <xref target="RFC9641"/> and
             <xref target="RFC9642"/>, trust anchors and keys
             installed during manufacturing are expected to appear
-            in &lt;operational&gt; (<xref section="5.3" target="RFC8342"/>), and &lt;system&gt;
-            <xref target="I-D.ietf-netmod-system-config"/>, if implemented.</t>
+            in &lt;operational&gt; (<xref section="5.3" target="RFC8342"/>) and &lt;system&gt;
+            <xref target="I-D.ietf-netmod-system-config"/> if implemented.</t>
       </section>
     </section>
     <section>
-      <name>The "ietf-restconf-client" Module</name>
-      <t>The RESTCONF client data model presented in this section supports
-        both clients initiating connections to servers, as well as
+      <name>The "ietf-restconf-client" YANG Module</name>
+      <t>The RESTCONF client YANG data model presented in this section supports
+        both clients initiating connections to servers and
         clients listening for connections from servers calling home.</t>
       <t>YANG feature statements are used to enable implementations to
         advertise which potentially uncommon parts of the data model the
@@ -239,22 +182,20 @@ tcp-client-server      |     /         |      |
       <section anchor="restconf-client-tree">
         <name>Data Model Overview</name>
         <t>This section provides an overview of the "ietf-restconf-client"
-            module in terms of its features and groupings.</t>
+        YANG module in terms of its features and groupings.</t>
         <section anchor="client-features" toc="exclude">
           <name>Features</name>
           <t>The following diagram lists all the "feature" statements
               defined in the "ietf-restconf-client" module:</t>
-          <artwork><![CDATA[
+          <sourcecode type=""><![CDATA[
 Features:
   +-- https-initiate
   +-- http-listen
   +-- https-listen
-  +-- central-restconf-client-supported 
-                  ]]></artwork>
-          <!--<aside>-->
+  +-- central-restconf-client-supported]]></sourcecode>
+
               <t>The diagram above uses syntax that is similar to but not
                 defined in <xref target="RFC8340"/>.</t>
-          <!--</aside>-->
           </section>
         <section toc="exclude">
           <name>Groupings</name>
@@ -294,33 +235,27 @@ HIDE_TEXT_FROM_FILE(refs/tree-restconf-client-grouping.no-expand.txt)
             <name>The "restconf-client-initiate-stack-grouping" Grouping</name>
             <t>The following tree diagram <xref target="RFC8340"/> illustrates the
                 "restconf-client-initiate-stack-grouping" grouping:</t>
-            <artwork><![CDATA[
+            <sourcecode type="yangtree"><![CDATA[
   grouping restconf-client-initiate-stack-grouping:
     +-- http-client-parameters
     |  +---u httpc:http-client-grouping
     +-- restconf-client-parameters
-                +---u rcc:restconf-client-grouping
-]]></artwork>
+       +---u rcc:restconf-client-grouping]]></sourcecode>
+
             <t>Comments:</t>
             <ul>
               <li>The "restconf-client-initiate-stack-grouping" defines the
-                  configuration for a full RESTCONF protocol stack, for RESTCONF
-                  clients that initiate connections to RESTCONF servers, as
-                  opposed to receiving call-home <xref target="RFC8071"/>
-                  connections.</li>
-              <li>The "transport" choice node enables transport options to be
-                  configured.  This document only defines an "https" option,
-                  but other options MAY be augmented in.</li>
+                  configuration for a full RESTCONF protocol stack for RESTCONF
+                  clients that initiate connections to RESTCONF servers (as
+                  opposed to receiving call home connections).</li>
               <li>
-                <t>For the referenced grouping statement(s):
+                <t>For the referenced grouping statements:
                 </t>
                 <ul spacing="compact">
-                  <li>The "tcp-client-grouping" grouping is discussed in
-                      <xref section="3.1.2.1" target="RFC9643"/>.</li>
-                  <li>The "tls-client-grouping" grouping is discussed in
-                      <xref section="3.1.2.1" target="RFC9645"/>.</li>
+				<li>The "restconf-client-grouping" grouping is discussed in
+                    <xref target="restconf-client-grouping"/> in this document.</li>
                   <li>The "http-client-grouping" grouping is discussed in
-                      <xref section="2.1.2.2" target="I-D.ietf-netconf-http-client-server"/>.</li>
+                      <xref section="2.1.2.1" target="RFC10009"/>.</li>
                   <!--<li>The "restconf-client-grouping" grouping is discussed in
                     <xref target="restconf-client-grouping"/> in this document.</li>-->
                   </ul>
@@ -331,7 +266,7 @@ HIDE_TEXT_FROM_FILE(refs/tree-restconf-client-grouping.no-expand.txt)
             <name>The "restconf-client-listen-stack-grouping" Grouping</name>
             <t>The following tree diagram <xref target="RFC8340"/> illustrates the
                 "restconf-client-listen-stack-grouping" grouping:</t>
-            <artwork><![CDATA[
+            <sourcecode type="yangtree"><![CDATA[
   grouping restconf-client-listen-stack-grouping:
     +-- (transport)
        +--:(tcp) {tcp-listen}?
@@ -341,22 +276,16 @@ HIDE_TEXT_FROM_FILE(refs/tree-restconf-client-grouping.no-expand.txt)
              +-- http-client-parameters
              |  +---u httpc:http-client-grouping
              +-- restconf-client-parameters
-                +---u rcc:restconf-client-grouping
-]]></artwork>
+                +---u rcc:restconf-client-grouping]]></sourcecode>
+
             <t>Comments:</t>
             <ul>
               <li>The "restconf-client-listen-stack-grouping" defines the
-                  configuration for a full RESTCONF protocol stack, for RESTCONF
-                  clients that receive call-home <xref target="RFC8071"/>
-                  connections from RESTCONF servers.</li>
-              <li>The "transport" choice node enables either the HTTP or
-                  HTTPS transports to be configured, with each option
-                  enabled by a "feature" statement.  Whilst RESTCONF <xref target="RFC8040"/> 
-                  requires HTTPS, an HTTP option is provided to support
-                  cases where a TLS-terminator is deployed in front of
-                  the RESTCONF-client.</li>
+                  configuration for a full RESTCONF protocol stack for RESTCONF
+                  clients that receive call home connections from RESTCONF servers.</li>
+              <li>The "transport" choice node selects the HTTP-level transport to configure, with each case enabled by a "feature" statement. The "tcp" case is used for HTTP up to and including HTTP/2. Other transports MAY be augmented into the "transport" choice node by future efforts.</li>
               <li>
-                <t>For the referenced grouping statement(s):
+                <t>For the referenced grouping statements:
                 </t>
                 <ul spacing="compact">
                   <li>The "tcp-server-grouping" grouping is discussed in
@@ -364,7 +293,7 @@ HIDE_TEXT_FROM_FILE(refs/tree-restconf-client-grouping.no-expand.txt)
                   <li>The "tls-client-grouping" grouping is discussed in
                       <xref section="3.1.2.1" target="RFC9645"/>.</li>
                   <li>The "http-client-grouping" grouping is discussed in
-                      <xref section="2.1.2.2" target="I-D.ietf-netconf-http-client-server"/>.</li>
+                      <xref section="2.1.2.1" target="RFC10009"/>.</li>
                   <!--<li>The "restconf-client-grouping" grouping is discussed in
                     <xref target="restconf-client-grouping"/> in this document.</li>-->
                   </ul>
@@ -374,15 +303,16 @@ HIDE_TEXT_FROM_FILE(refs/tree-restconf-client-grouping.no-expand.txt)
           <section anchor="restconf-client-app-grouping">
             <name>The "restconf-client-app-grouping" Grouping</name>
             <t>The following tree diagram <xref target="RFC8340"/> illustrates the
-                "restconf-client-app-grouping" grouping:</t>
-            <artwork><![CDATA[
+            "restconf-client-app-grouping" grouping:</t>
+	    
+            <sourcecode type="yangtree"><![CDATA[
   grouping restconf-client-app-grouping:
     +-- initiate! {initiate}?
     |  +-- restconf-server* [name]
-    |     +-- name?                 string
+    |     +-- name                  string
     |     +-- endpoints
     |     |  +-- endpoint* [name]
-    |     |     +-- name?                                      string
+    |     |     +-- name            string
     |     |     +---u restconf-client-initiate-stack-grouping
     |     +-- connection-type
     |     |  +-- (connection-type)
@@ -401,39 +331,39 @@ HIDE_TEXT_FROM_FILE(refs/tree-restconf-client-grouping.no-expand.txt)
        +-- idle-timeout?   uint16
        +-- endpoints
           +-- endpoint* [name]
-             +-- name?                                    string
-             +---u restconf-client-listen-stack-grouping
-]]></artwork>
+             +-- name               string
+             +---u restconf-client-listen-stack-grouping]]></sourcecode>
+
             <t>Comments:</t>
             <ul>
               <li>The "restconf-client-app-grouping" defines the configuration
                   for a RESTCONF client that supports both initiating connections
-                  to RESTCONF servers as well as receiving call-home connections from
+                  to RESTCONF servers and receiving call home connections from
                   RESTCONF servers.</li>
               <li>Both the "initiate" and "listen" subtrees are predicated by
                   "feature" statements.</li>
               <li>
-                <t>For the referenced grouping statement(s):
+                <t>For the referenced grouping statements:
                 </t>
                 <ul spacing="compact">
                   <li>The "restconf-client-initiate-stack-grouping" grouping is discussed in
-                      <xref target="restconf-client-initiate-stack-grouping"/> in this document.</li>
+                      <xref target="restconf-client-initiate-stack-grouping"/>.</li>
                   <li>The "restconf-client-listen-stack-grouping" grouping is discussed in
-                      <xref target="restconf-client-listen-stack-grouping"/> in this document.</li>
+                      <xref target="restconf-client-listen-stack-grouping"/>.</li>
                 </ul>
               </li>
             </ul>
           </section>
         </section>
         <section toc="exclude">
-          <name>Protocol-accessible Nodes</name>
+          <name>Protocol-Accessible Nodes</name>
           <t>The following tree diagram <xref target="RFC8340"/> lists all the protocol-accessible nodes
               defined in the "ietf-restconf-client" module:</t>
-          <artwork><![CDATA[
+          <sourcecode type="yangtree"><![CDATA[
 module: ietf-restconf-client
   +--rw restconf-client {central-restconf-client-supported}?
-     +---u restconf-client-app-grouping
-]]></artwork>
+     +---u restconf-client-app-grouping]]></sourcecode>
+
           <t>Comments:</t>
           <ul>
             <li>Protocol-accessible nodes are those nodes that are accessible
@@ -441,10 +371,10 @@ module: ietf-restconf-client
             <li>The top-level node "restconf-client" is additionally constrained
                 by the feature "central-restconf-client-supported".</li>
             <li>The "restconf-client-app-grouping" grouping is discussed in
-                <xref target="restconf-client-app-grouping"/> in this document.</li>
-            <li>The reason for why "restconf-client-app-grouping" exists separate from
-                the protocol-accessible nodes definition is so as to enable
-                instances of restconf-client-app-grouping to be instantiated in other
+                <xref target="restconf-client-app-grouping"/>.</li>
+            <li>The reason "restconf-client-app-grouping" exists separately from
+                the protocol-accessible nodes definition is to enable
+                instances of "restconf-client-app-grouping" to be instantiated in other
                 locations, as may be needed or desired by some modules.</li>
           </ul>
         </section>
@@ -452,12 +382,12 @@ module: ietf-restconf-client
       <section>
         <name>Example Usage</name>
         <t>The following example illustrates configuring a RESTCONF
-          client to initiate connections, as well as to listen for call-home
+          client to initiate connections as well as to listen for call home
           connections.</t>
         <t>This example is consistent with the examples presented in
             <xref section="2.2.1" target="RFC9641"/> and
             <xref section="2.2.1" target="RFC9642"/>.</t>
-        <artwork><![CDATA[
+        <sourcecode type="xml"><![CDATA[
 =============== NOTE: '\' line wrapping per RFC 8792 ================
 
 <restconf-client xmlns="urn:ietf:params:xml:ns:yang:ietf-restconf-cl\
@@ -598,39 +528,39 @@ rts</central-truststore-reference>
       </endpoint>
     </endpoints>
   </listen>
-</restconf-client>
-]]></artwork>
+</restconf-client>]]></sourcecode>
+
       </section>
       <section anchor="ietf-restconf-client-module">
         <name>YANG Module</name>
-        <t>This YANG module has normative references to <xref target="RFC6991"/>,
-          <xref target="RFC8040"/>, and <xref target="RFC8071"/>,
+        <t>This YANG module has normative references to
+          <xref target="RFC8040"/>, <xref target="RFC8071"/>,
           <xref target="RFC9643"/>,
-          <xref target="RFC9645"/>, and
-          <xref target="I-D.ietf-netconf-http-client-server"/>.</t>
-        <t keepWithNext="true">&lt;CODE BEGINS&gt; file "ietf-restconf-client@2025-12-04.yang"</t>
-        <artwork><![CDATA[
+          <xref target="RFC9645"/>, <xref target="RFC9911"/>, and
+        <xref target="RFC10009"/>.</t>
+
+        <sourcecode type="yang" markers="true" name="ietf-restconf-client@2026-06-11.yang"><![CDATA[
 module ietf-restconf-client {
   yang-version 1.1;
   namespace "urn:ietf:params:xml:ns:yang:ietf-restconf-client";
   prefix rcc;
 
-  import ietf-yang-types {
-    prefix yang;
-    reference
-      "RFC 6991: Common YANG Data Types";
-  }
-
   import ietf-tcp-server {
     prefix tcps;
     reference
-      "RFC DDDD: YANG Groupings for TCP Clients and TCP Servers";
+      "RFC 9643: YANG Groupings for TCP Clients and TCP Servers";
+  }
+
+  import ietf-yang-types {
+    prefix yang;
+    reference
+      "RFC 9911: Common YANG Data Types";
   }
 
   import ietf-http-client {
     prefix httpc;
     reference
-      "RFC GGGG: YANG Groupings for HTTP Clients and HTTP Servers";
+      "RFC 10009: YANG Groupings for HTTP Clients and HTTP Servers";
   }
 
   organization
@@ -639,14 +569,22 @@ module ietf-restconf-client {
   contact
     "WG Web:   https://datatracker.ietf.org/wg/netconf
      WG List:  NETCONF WG list <mailto:netconf@ietf.org>
+
      Author:   Kent Watsen <mailto:kent+ietf@watsen.net>";
 
   description
-    "This module contains a collection of YANG definitions
+    "This YANG module contains a collection of YANG definitions
      for configuring RESTCONF clients.
 
-     Copyright (c) 2025 IETF Trust and the persons identified
-     as authors of the code. All rights reserved.
+     The key words 'MUST', 'MUST NOT', 'REQUIRED', 'SHALL',
+     'SHALL NOT', 'SHOULD', 'SHOULD NOT', 'RECOMMENDED',
+     'NOT RECOMMENDED', 'MAY', and 'OPTIONAL' in this document
+     are to be interpreted as described in BCP 14 (RFC 2119)
+     (RFC 8174) when, and only when, they appear in all
+     capitals, as shown here.
+
+     Copyright (c) 2026 IETF Trust and the persons identified
+     as authors of the code.  All rights reserved.
 
      Redistribution and use in source and binary forms, with
      or without modification, is permitted pursuant to, and
@@ -655,22 +593,20 @@ module ietf-restconf-client {
      Legal Provisions Relating to IETF Documents
      (https://trustee.ietf.org/license-info).
 
-     This version of this YANG module is part of RFC IIII
-     (https://www.rfc-editor.org/info/rfcIIII); see the RFC
-     itself for full legal notices.
+	 All revisions of IETF and IANA published modules can be
+     found at the YANG Parameters registry group
+     (https://www.iana.org/assignments/yang-parameters).
 
-     The key words 'MUST', 'MUST NOT', 'REQUIRED', 'SHALL',
-     'SHALL NOT', 'SHOULD', 'SHOULD NOT', 'RECOMMENDED',
-     'NOT RECOMMENDED', 'MAY', and 'OPTIONAL' in this document
-     are to be interpreted as described in BCP 14 (RFC 2119)
-     (RFC 8174) when, and only when, they appear in all
-     capitals, as shown here.";
+     This version of this YANG module is part of RFC 10011
+     (https://www.rfc-editor.org/info/rfc10011); see the RFC
+     itself for full legal notices.";
 
-  revision 2025-12-04 {
+  revision 2026-06-11 {
     description
-      "Initial version";
+      "Initial revision";
     reference
-      "RFC IIII: A YANG Data Model for RESTCONF Clients and Server";
+      "RFC 10011: A YANG Data Model for RESTCONF Clients and 
+                  Servers";
   }
 
   // Features
@@ -687,31 +623,31 @@ module ietf-restconf-client {
   feature listen {
     description
       "The 'listen' feature indicates that the RESTCONF client
-       supports listening for incoming RESTCONF server call-home
+       supports listening for incoming RESTCONF server call home
        connections.";
     reference
       "RFC 8071: NETCONF Call Home and RESTCONF Call Home";
   }
 
   feature tcp-listen {
-    if-feature listen;
+    if-feature "listen";
     description
       "The 'tcp-listen' feature indicates that the RESTCONF client
-       supports listening for incoming RESTCONF server call-home
+       supports listening for incoming RESTCONF server call home
        connections over TCP (e.g., HTTP/1 or HTTP/2).";
     reference
       "RFC 8071: NETCONF Call Home and RESTCONF Call Home";
   }
 
   feature central-restconf-client-supported {
-   description
+    description
       "The 'central-restconf-client-supported' feature indicates
        that the server that implements this module supports
        the top-level 'restconf-client' node.
 
        This feature is needed as some servers may want to use
        features defined in this module, which requires this
-       module to be implemented, without having to support
+       module to be implemented without having to support
        the top-level 'restconf-client' node.";
   }
 
@@ -731,8 +667,8 @@ module ietf-restconf-client {
        established.
 
        As no RESTCONF-specific client configuration needs to be
-       set, this node is empty, but retained for clarity and for
-       consistency with other 'client-server' models.";
+       set, this node is empty; but it is retained for clarity 
+       and for consistency with other 'client-server' models.";
   }
 
 
@@ -749,30 +685,30 @@ module ietf-restconf-client {
           description
             "RFC 8040 requires the 'https' scheme.";
         }
-        refine 'uri/path' {
+        refine "uri/path" {
           if-feature "foo and not foo"; // logically impossible
           description
-            "The 'path' component of the URI does not make
-             sense to configure for a RESTCONF client.";
+            "It does not make sense to configure the 'path' 
+             component of the URI for a RESTCONF client.";
         }
-        refine 'uri/query' {
+        refine "uri/query" {
           if-feature "foo and not foo"; // logically impossible
           description
-            "The 'query' component of the URI does not make
-             sense to configure for a RESTCONF client.";
+            "It does not make sense to configure the 'query' 
+             component of the URI for a RESTCONF client.";
         }
-        refine 'uri/fragment' {
+        refine "uri/fragment" {
           if-feature "foo and not foo"; // logically impossible
           description
-            "The 'fragment' component of the URI does not make
-             sense to configure for a RESTCONF client.";
+            "It does not make sense to configure the 'fragment'
+             component of the URI for a RESTCONF client.";
         }
       }
     }
     container restconf-client-parameters {
       description
         "RESTCONF-level client parameters to initiate
-         a RESTCONF over HTTP connection.";
+         a RESTCONF-over-HTTP connection.";
       uses rcc:restconf-client-grouping;
     }
 
@@ -819,30 +755,31 @@ module ietf-restconf-client {
                 description
                   "RFC 8040 requires the 'https' scheme.";
               }
-              refine 'uri/authority/port' {
+              refine "uri/authority/port" {
                 if-feature "foo and not foo"; // logically impossible
                 description
-                  "The authority's 'port' component of the URI does
-                   not make sense to configure for a RESTCONF client
-                   listening for a call home connections.";
+                  "It does not make sense to configure the 
+                   authority's 'port' component of the URI 
+                   RESTCONF client listening for a call home
+                   connection.";
               }
-              refine 'uri/path' {
+              refine "uri/path" {
                 if-feature "foo and not foo"; // logically impossible
                 description
-                  "The 'path' component of the URI does not make
-                   sense to configure for a RESTCONF client.";
+                  "It does not make sense to configure the 'path' 
+                   component of the URI for a RESTCONF client.";
               }
-              refine 'uri/query' {
+              refine "uri/query" {
                 if-feature "foo and not foo"; // logically impossible
                 description
-                  "The 'query' component of the URI does not make
-                   sense to configure for a RESTCONF client.";
+                  "It does not make sense to configure the 'query' 
+                   component of the URI for a RESTCONF client.";
               }
-              refine 'uri/fragment' {
+              refine "uri/fragment" {
                 if-feature "foo and not foo"; // logically impossible
                 description
-                  "The 'fragment' component of the URI does not make
-                   sense to configure for a RESTCONF client.";
+                  "It does not make sense to configure the 'fragment'
+                   component of the URI for a RESTCONF client.";
               }
             }
           }
@@ -870,7 +807,7 @@ module ietf-restconf-client {
          descendant nodes do not imply that this node must be
          configured.";
       description
-        "Configures client initiating underlying TCP connections.";
+        "Configures client-initiating underlying connections.";
       list restconf-server {
         key "name";
         min-elements 1;
@@ -892,7 +829,7 @@ module ietf-restconf-client {
             description
               "A non-empty user-ordered list of endpoints for this
                RESTCONF client to try to connect to in sequence.
-               Defining more than one enables high-availability.";
+               Defining more than one enables high availability.";
             leaf name {
               type string;
               description
@@ -916,9 +853,9 @@ module ietf-restconf-client {
                    maintained.";
                 description
                   "Maintain a persistent connection to the
-                   RESTCONF server. If the connection goes down,
+                   RESTCONF server.  If the connection goes down,
                    immediately start trying to reconnect to the
-                   RESTCONF server, using the reconnection strategy.
+                   RESTCONF server using the reconnection strategy.
 
                    This connection type minimizes any RESTCONF server
                    to RESTCONF client data-transfer delay, albeit
@@ -935,7 +872,7 @@ module ietf-restconf-client {
 
                    This connection type decreases resource
                    utilization, albeit with increased delay
-                   in RESTCONF server to RESTCONF client
+                   in RESTCONF-server-to-RESTCONF-client
                    interactions.
 
                    The RESTCONF client SHOULD gracefully close
@@ -943,8 +880,8 @@ module ietf-restconf-client {
                    planned activities.
 
                    Connections are established at the same start
-                   time regardless how long the previous connection
-                   stayed open.
+                   time regardless of how long the previous 
+                   connection stayed open.
 
                    In the case that the previous connection is
                    still active, establishing a new connection
@@ -967,18 +904,18 @@ module ietf-restconf-client {
                   }
                   description
                     "Designates a timestamp before or after which a
-                     series of periodic connections are determined.
+                     series of periodic connections is determined.
                      The periodic connections occur at a whole
                      multiple interval from the anchor time.
 
                      If an 'anchor-time' is not provided, then the
                      server MAY implicitly set it to the time when
-                     this configuraton is applied (e.g., on boot).
+                     this configuration is applied (e.g., on boot).
 
-                     For example, for an anchor time is 15 minutes
+                     For example, for an anchor time of 15 minutes
                      past midnight and a period interval of 24 hours,
-                     then a periodic connection will occur 15 minutes
-                     past midnight everyday.";
+                     a periodic connection will occur 15 minutes
+                     past midnight every day.";
                 }
                 leaf idle-timeout {
                   type uint16;
@@ -987,11 +924,11 @@ module ietf-restconf-client {
                   description
                     "Specifies the maximum number of seconds
                      that the underlying TCP session may remain
-                     idle. A TCP session will be dropped if it
+                     idle.  A TCP session will be dropped if it
                      is idle for an interval longer than this
-                     number of seconds If set to zero, then the
-                     RESTCONF client will never drop a session
-                     because it is idle.";
+                     number of seconds.  If set to zero, then
+                     the RESTCONF client will never drop a 
+                     session because it is idle.";
                 }
               }
             }
@@ -1000,7 +937,7 @@ module ietf-restconf-client {
         container reconnect-strategy {
           description
             "The reconnection strategy directs how a RESTCONF
-             client reconnects to a RESTCONF server, after
+             client reconnects to a RESTCONF server after
              discovering its connection to the server has
              dropped, even if due to a reboot.  The RESTCONF
              client starts with the specified endpoint and
@@ -1051,30 +988,30 @@ module ietf-restconf-client {
             }
             default "3";
             description
-              "Specifies the number times the RESTCONF client
-               tries to connect to a specific endpoint before
-               moving on to the next endpoint in the list
-               (round robin).";
+              "Specifies the number of times the RESTCONF
+               client tries to connect to a specific endpoint 
+               before moving on to the next endpoint in the
+               list (round robin).";
           }
         }
       }
     } // initiate
 
     container listen {
-      if-feature listen;
+      if-feature "listen";
       presence
         "Indicates that client-listening ports have been configured.
          This statement is present so the mandatory descendant nodes
          do not imply that this node must be configured.";
       description
-        "Configures the client to accept call-home TCP connections.";
+        "Configures the client to accept call-home connections.";
       leaf idle-timeout {
         type uint16;
         units "seconds";
         default "180";
         description
           "Specifies the maximum number of seconds that an
-           underlying TCP session may remain idle. A TCP session
+           underlying TCP session may remain idle.  A TCP session
            will be dropped if it is idle for an interval longer
            then this number of seconds.  If set to zero, then
            the server will never drop a session because it is
@@ -1102,21 +1039,20 @@ module ietf-restconf-client {
 
   // Protocol accessible node for servers that implement this module.
   container restconf-client {
-    if-feature central-restconf-client-supported;
+    if-feature "central-restconf-client-supported";
     uses restconf-client-app-grouping;
     description
-      "Top-level container for RESTCONF client configuration.";
+      "Top-level container for RESTCONF-client configuration.";
   }
 
-}
-]]></artwork>
-        <t keepWithPrevious="true">&lt;CODE ENDS&gt;</t>
+}]]></sourcecode>
+
       </section>
     </section>
     <section>
-      <name>The "ietf-restconf-server" Module</name>
-      <t>The RESTCONF server data model presented in this section supports
-        both listening for connections as well as initiating call-home
+      <name>The "ietf-restconf-server" YANG Module</name>
+      <t>The RESTCONF server YANG data model presented in this section supports
+        both listening for connections and initiating call home
         connections.</t>
       <t>YANG feature statements are used to enable implementations to
         advertise which potentially uncommon parts of the data model the
@@ -1124,22 +1060,20 @@ module ietf-restconf-client {
       <section anchor="restconf-server-tree">
         <name>Data Model Overview</name>
         <t>This section provides an overview of the "ietf-restconf-server"
-            module in terms of its features and groupings.</t>
+            YANG module in terms of its features and groupings.</t>
         <section anchor="server-features" toc="exclude">
           <name>Features</name>
           <t>The following diagram lists all the "feature" statements
-              defined in the "ietf-restconf-server" module:</t>
-          <artwork><![CDATA[
+          defined in the "ietf-restconf-server" module:</t>
+	  
+          <sourcecode type=""><![CDATA[
 Features:
   +-- http-listen
   +-- https-listen
   +-- https-call-home
-  +-- central-restconf-server-supported
-                  ]]></artwork>
-          <!--<aside>-->
+  +-- central-restconf-server-supported]]></sourcecode>
               <t>The diagram above uses syntax that is similar to but not
                 defined in <xref target="RFC8340"/>.</t>
-          <!--</aside>-->
           </section>
         <section toc="exclude">
           <name>Groupings</name>
@@ -1147,7 +1081,7 @@ Features:
           <ul spacing="compact">
             <li>restconf-server-grouping</li>
             <li>restconf-server-listen-stack-grouping</li>
-            <li>restconf-server-callhome-stack-grouping</li>
+            <li>restconf-server-call-home-stack-grouping</li>
             <li>restconf-server-app-grouping</li>
           </ul>
           <t>Each of these groupings are presented in the following subsections.</t>
@@ -1155,22 +1089,22 @@ Features:
             <name>The "restconf-server-grouping" Grouping</name>
             <t>The following tree diagram <xref target="RFC8340"/> illustrates the
                 "restconf-server-grouping" grouping:</t>
-            <artwork><![CDATA[
+            <sourcecode type="yangtree"><![CDATA[
   grouping restconf-server-grouping:
     +-- client-identity-mappings
-       +---u x509c2n:cert-to-name
-]]></artwork>
+       +---u x509c2n:cert-to-name]]></sourcecode>
+
             <t>Comments:</t>
             <ul>
               <li>The "restconf-server-grouping" defines the configuration for the
                   "RESTCONF" part of a protocol stack.  It does not, for instance,
                   define any configuration for the "TCP", "TLS", or "HTTP" protocol layers
-                  (for that, see <xref target="restconf-server-listen-stack-grouping"/>
-                  and <xref target="restconf-server-callhome-stack-grouping"/>).</li>
+                  (for that, see Sections <xref target="restconf-server-listen-stack-grouping" format="counter"/>
+                  and <xref target="restconf-server-callhome-stack-grouping" format="counter"/>).</li>
               <li>The "client-identity-mappings" node defines a mapping from
                   certificate fields to RESTCONF user names.</li>
               <li>
-                <t>For the referenced grouping statement(s):
+                <t>For the referenced grouping statement:
                 </t>
                 <ul spacing="compact">
                   <li>The "cert-to-name" grouping is discussed in
@@ -1183,7 +1117,7 @@ Features:
             <name>The "restconf-server-listen-stack-grouping" Grouping</name>
             <t>The following tree diagram <xref target="RFC8340"/> illustrates the
                 "restconf-server-listen-stack-grouping" grouping:</t>
-            <artwork><![CDATA[
+            <sourcecode type="yangtree"><![CDATA[
   grouping restconf-server-listen-stack-grouping:
     +-- (transport)
        +--:(http-over-tcp) {tcp-listen}?
@@ -1218,21 +1152,17 @@ Features:
              +-- http-server-parameters
              |  +---u https:http-server-grouping
              +-- restconf-server-parameters
-                +---u rcs:restconf-server-grouping
-]]></artwork>
+                +---u rcs:restconf-server-grouping]]></sourcecode>
+
             <t>Comments:</t>
             <ul>
               <li>The "restconf-server-listen-stack-grouping" defines the
                   configuration for a full RESTCONF protocol stack for RESTCONF
-                  servers that listen for connections from RESTCONF clients,
-                  as opposed to initiating call-home <xref target="RFC8071"/> connections.</li>
-              <li>The "transport" choice node enables either the HTTP or HTTPS
-                  transports to be configured, with each option enabled by a
-                  "feature" statement. The HTTP option is provided to support
-                  cases where a TLS-terminator is deployed in front of
-                  the RESTCONF-server.</li>
+                  servers that listen for connections from RESTCONF clients
+                  (as opposed to initiating call home connections).</li>
+              <li>The "transport" choice node selects the HTTP-level transport to configure, with each case enabled by a "feature" statement. The "http-over-tcp" and "http-over-tls" cases are used for HTTP up to and including HTTP/2. The "http-over-quic" case is used for HTTP/3. Other transports MAY be augmented into the "transport" choice node by future efforts.</li>
               <li>
-                <t>For the referenced grouping statement(s):
+                <t>For the referenced grouping statements:
                 </t>
                 <ul spacing="compact">
                   <li>The "tcp-server-grouping" grouping is discussed in
@@ -1240,21 +1170,20 @@ Features:
                   <li>The "tls-server-grouping" grouping is discussed in
                       <xref section="4.1.2.1" target="RFC9645"/>.</li>
                   <li>The "http-server-grouping" grouping is discussed in
-                      <xref section="3.1.2.1" target="I-D.ietf-netconf-http-client-server"/>.</li>
-                  <li>The "restconf-server-grouping" is discussed in <xref target="restconf-server-grouping"/>
-                      of this document.</li>
+                      <xref section="3.1.2.1" target="RFC10009"/>.</li>
+                  <li>The "restconf-server-grouping" is discussed in <xref target="restconf-server-grouping"/>.</li>
                 </ul>
               </li>
             </ul>
           </section>
           <section anchor="restconf-server-callhome-stack-grouping">
-            <name>The "restconf-server-callhome-stack-grouping" Grouping</name>
+            <name>The "restconf-server-call-home-stack-grouping" Grouping</name>
             <t>The following tree diagram <xref target="RFC8340"/> illustrates the
-                "restconf-server-callhome-stack-grouping" grouping:</t>
-            <artwork><![CDATA[
-  grouping restconf-server-callhome-stack-grouping:
+                "restconf-server-call-home-stack-grouping" grouping:</t>
+            <sourcecode type="yangtree"><![CDATA[
+  grouping restconf-server-call-home-stack-grouping:
     +-- (transport)
-       +--:(http-over-tls) {tls-callhome}?
+       +--:(http-over-tls) {tls-call-home}?
           +-- http-over-tls
              +-- tcp-client-parameters
              |  +---u tcpc:tcp-client-grouping
@@ -1263,29 +1192,30 @@ Features:
              +-- http-server-parameters
              |  +---u https:http-server-grouping
              +-- restconf-server-parameters
-                +---u rcs:restconf-server-grouping
-]]></artwork>
+                +---u rcs:restconf-server-grouping]]></sourcecode>
+
             <t>Comments:</t>
             <ul>
-              <li>The "restconf-server-callhome-stack-grouping" defines the
-                  configuration for a full RESTCONF protocol stack, for RESTCONF
-                  servers that initiate call-home <xref target="RFC8071"/> connections
+              <li>The "restconf-server-call-home-stack-grouping" defines the
+                  configuration for a full RESTCONF protocol stack for RESTCONF
+                  servers that initiate call home connections
                   to RESTCONF clients.</li>
-              <li>The "transport" choice node enables transport options to be
-                  configured. This document only defines an "https" option, but
-                  other options MAY be augmented in.</li>
+				<li>The "transport" choice node enables transport options to be configured. This document only defines an "http-over-tls" option, but
+      other options MAY be augmented in.</li>
+              <li><t>For the referenced grouping statements:</t>
+<ul spacing="compact"><li>The "http-client-grouping" grouping is discussed in
+         <xref section="2.1.2.1" target="RFC10009"/>.</li>
+    <li>The "restconf-server-grouping" is discussed in <xref target="restconf-server-grouping"/></li></ul></li>
               <li>
-                <t>For the referenced grouping statement(s):
-                </t>
+                <t>For the referenced grouping statements:</t>
                 <ul spacing="compact">
                   <li>The "tcp-client-grouping" grouping is discussed in
                       <xref section="3.1.2.1" target="RFC9643"/>.</li>
                   <li>The "tls-server-grouping" grouping is discussed in
                       <xref section="4.1.2.1" target="RFC9645"/>.</li>
                   <li>The "http-server-grouping" grouping is discussed in
-                      <xref section="3.1.2.1" target="I-D.ietf-netconf-http-client-server"/>.</li>
-                  <li>The "restconf-server-grouping" is discussed in <xref target="restconf-server-grouping"/>
-                      of this document.</li>
+                      <xref section="3.1.2.1" target="RFC10009"/>.</li>
+                  <li>The "restconf-server-grouping" is discussed in <xref target="restconf-server-grouping"/>.</li>
                 </ul>
               </li>
             </ul>
@@ -1294,20 +1224,20 @@ Features:
             <name>The "restconf-server-app-grouping" Grouping</name>
             <t>The following tree diagram <xref target="RFC8340"/> illustrates the
                 "restconf-server-app-grouping" grouping:</t>
-            <artwork><![CDATA[
+            <sourcecode type="yangtree"><![CDATA[
   grouping restconf-server-app-grouping:
     +-- listen! {listen}?
     |  +-- endpoints
     |     +-- endpoint* [name]
-    |        +-- name?                                    string
+    |        +-- name               string
     |        +---u restconf-server-listen-stack-grouping
-    +-- call-home! {callhome}?
+    +-- call-home! {call-home}?
        +-- restconf-client* [name]
-          +-- name?                 string
+          +-- name                  string
           +-- endpoints
           |  +-- endpoint* [name]
-          |     +-- name?                                      string
-          |     +---u restconf-server-callhome-stack-grouping
+          |     +-- name            string
+          |     +---u restconf-server-call-home-stack-grouping
           +-- connection-type
           |  +-- (connection-type)
           |     +--:(persistent-connection)
@@ -1320,38 +1250,38 @@ Features:
           +-- reconnect-strategy
              +-- start-with?     enumeration
              +-- max-wait?       uint16
-             +-- max-attempts?   uint8
-]]></artwork>
+             +-- max-attempts?   uint8]]></sourcecode>
+
             <t>Comments:</t>
             <ul>
               <li>The "restconf-server-app-grouping" defines the configuration
                   for a RESTCONF server that supports both listening for connections
-                  from RESTCONF clients as well as initiating call-home connections to
+                  from RESTCONF clients and initiating call home connections to
                   RESTCONF clients.</li>
               <li>Both the "listen" and "call-home" subtrees must be enabled by
                   "feature" statements.</li>
               <li>
-                <t>For the referenced grouping statement(s):
+                <t>For the referenced grouping statements:
                 </t>
                 <ul spacing="compact">
                   <li>The "restconf-server-listen-stack-grouping" grouping is discussed in
-                      <xref target="restconf-server-listen-stack-grouping"/> in this document.</li>
-                  <li>The "restconf-server-callhome-stack-grouping" grouping is discussed in
-                      <xref target="restconf-server-callhome-stack-grouping"/> in this document.</li>
+                      <xref target="restconf-server-listen-stack-grouping"/>.</li>
+                  <li>The "restconf-server-call-home-stack-grouping" grouping is discussed in
+                      <xref target="restconf-server-callhome-stack-grouping"/>.</li>
                 </ul>
               </li>
             </ul>
           </section>
         </section>
         <section toc="exclude">
-          <name>Protocol-accessible Nodes</name>
+          <name>Protocol-Accessible Nodes</name>
           <t>The following tree diagram <xref target="RFC8340"/> lists all the protocol-accessible nodes
               defined in the "ietf-restconf-server" module:</t>
-          <artwork><![CDATA[
+          <sourcecode type="yangtree"><![CDATA[
 module: ietf-restconf-server
   +--rw restconf-server {central-restconf-server-supported}?
-     +---u restconf-server-app-grouping
-]]></artwork>
+     +---u restconf-server-app-grouping]]></sourcecode>
+
           <t>Comments:</t>
           <ul>
             <li>Protocol-accessible nodes are those nodes that are accessible
@@ -1359,10 +1289,10 @@ module: ietf-restconf-server
             <li>The top-level node "restconf-server" is additionally constrained
                 by the feature "central-restconf-server-supported".</li>
             <li>The "restconf-server-app-grouping" grouping is discussed in
-                <xref target="restconf-server-app-grouping"/> in this document.</li>
-            <li>The reason for why "restconf-server-app-grouping" exists separate from
-                the protocol-accessible nodes definition is so as to enable
-                instances of restconf-server-app-grouping to be instantiated in other
+                <xref target="restconf-server-app-grouping"/>.</li>
+            <li>The reason "restconf-server-app-grouping" exists separately from
+                the protocol-accessible nodes definition is to enable
+                instances of "restconf-server-app-grouping" to be instantiated in other
                 locations, as may be needed or desired by some modules.</li>
           </ul>
         </section>
@@ -1370,12 +1300,13 @@ module: ietf-restconf-server
       <section>
         <name>Example Usage</name>
         <t>The following example illustrates configuring a RESTCONF server
-          to listen for RESTCONF client connections, as well as configuring
+          to listen for RESTCONF client connections as well as configuring
           call-home to one RESTCONF client.</t>
         <t>This example is consistent with the examples presented in
             <xref section="2.2.1" target="RFC9641"/> and
             <xref section="2.2.1" target="RFC9642"/>.</t>
-        <artwork><![CDATA[
+
+        <sourcecode type="xml"><![CDATA[
 =============== NOTE: '\' line wrapping per RFC 8792 ================
 
 <restconf-server
@@ -1622,34 +1553,20 @@ rts</central-truststore-reference>
       </reconnect-strategy>
     </restconf-client>
   </call-home>
-</restconf-server>
-]]></artwork>
+</restconf-server>]]></sourcecode>
+
       </section>
       <section anchor="ietf-restconf-server-module">
         <name>YANG Module</name>
-        <t>This YANG module has normative references to <xref target="RFC6991"/>,
-          <xref target="RFC7407"/>, <xref target="RFC8040"/>, <xref target="RFC8071"/>,
+        <t>This YANG module has normative references to <xref target="RFC7407"/>, <xref target="RFC8040"/>, <xref target="RFC8071"/>,
           <xref target="RFC9643"/>,
-          <xref target="RFC9645"/>, and
-          <xref target="I-D.ietf-netconf-http-client-server"/>.</t>
-        <t keepWithNext="true">&lt;CODE BEGINS&gt; file "ietf-restconf-server@2025-12-04.yang"</t>
-        <artwork><![CDATA[
+          <xref target="RFC9645"/>, <xref target="RFC9911"/>, <xref target="RFC9984"/>, and
+        <xref target="RFC10009"/>.</t>
+        <sourcecode type="yang" markers="true" name="ietf-restconf-server@2026-06-11.yang"><![CDATA[
 module ietf-restconf-server {
   yang-version 1.1;
   namespace "urn:ietf:params:xml:ns:yang:ietf-restconf-server";
   prefix rcs;
-
-  import ietf-yang-types {
-    prefix yang;
-    reference
-      "RFC 6991: Common YANG Data Types";
-  }
-
-  import ietf-inet-types {
-    prefix inet;
-    reference
-      "RFC 6991: Common YANG Data Types";
-  }
 
   import ietf-x509-cert-to-name {
     prefix x509c2n;
@@ -1660,31 +1577,43 @@ module ietf-restconf-server {
   import ietf-tcp-client {
     prefix tcpc;
     reference
-      "RFC DDDD: YANG Groupings for TCP Clients and TCP Servers";
+      "RFC 9643: YANG Groupings for TCP Clients and TCP Servers";
   }
 
   import ietf-tcp-server {
     prefix tcps;
     reference
-      "RFC DDDD: YANG Groupings for TCP Clients and TCP Servers";
+      "RFC 9643: YANG Groupings for TCP Clients and TCP Servers";
   }
 
   import ietf-tls-server {
     prefix tlss;
     reference
-      "RFC FFFF: YANG Groupings for TLS Clients and TLS Servers";
+      "RFC 9645: YANG Groupings for TLS Clients and TLS Servers";
   }
 
-  import ietf-http-server {
-    prefix https;
+  import ietf-yang-types {
+    prefix yang;
     reference
-      "RFC GGGG: YANG Groupings for HTTP Clients and HTTP Servers";
+      "RFC 9911: Common YANG Data Types";
+  }
+
+  import ietf-inet-types {
+    prefix inet;
+    reference
+      "RFC 9911: Common YANG Data Types";
   }
 
   import ietf-udp-server {
     prefix udps;
     reference
-      "RFC JJJJ: YANG Groupings for UDP Clients and UDP Servers";
+      "RFC 9984: YANG Groupings for UDP Clients and UDP Servers";
+  }
+			
+  import ietf-http-server {
+    prefix https;
+    reference
+      "RFC 10009: YANG Groupings for HTTP Clients and HTTP Servers";
   }
 
   organization
@@ -1693,14 +1622,22 @@ module ietf-restconf-server {
   contact
     "WG Web:   https://datatracker.ietf.org/wg/netconf
      WG List:  NETCONF WG list <mailto:netconf@ietf.org>
+
      Author:   Kent Watsen <mailto:kent+ietf@watsen.net>";
 
   description
-    "This module contains a collection of YANG definitions
+    "This YANG module contains a collection of YANG definitions
      for configuring RESTCONF servers.
 
-     Copyright (c) 2025 IETF Trust and the persons identified
-     as authors of the code. All rights reserved.
+     The key words 'MUST', 'MUST NOT', 'REQUIRED', 'SHALL',
+     'SHALL NOT', 'SHOULD', 'SHOULD NOT', 'RECOMMENDED',
+     'NOT RECOMMENDED', 'MAY', and 'OPTIONAL' in this document
+     are to be interpreted as described in BCP 14 (RFC 2119)
+     (RFC 8174) when, and only when, they appear in all
+     capitals, as shown here.
+
+     Copyright (c) 2026 IETF Trust and the persons identified
+     as authors of the code.  All rights reserved.
 
      Redistribution and use in source and binary forms, with
      or without modification, is permitted pursuant to, and
@@ -1709,22 +1646,20 @@ module ietf-restconf-server {
      Legal Provisions Relating to IETF Documents
      (https://trustee.ietf.org/license-info).
 
-     This version of this YANG module is part of RFC IIII
-     (https://www.rfc-editor.org/info/rfcIIII); see the RFC
-     itself for full legal notices.
+     All revisions of IETF and IANA published modules can be
+     found at the YANG Parameters registry group
+     (https://www.iana.org/assignments/yang-parameters).
 
-     The key words 'MUST', 'MUST NOT', 'REQUIRED', 'SHALL',
-     'SHALL NOT', 'SHOULD', 'SHOULD NOT', 'RECOMMENDED',
-     'NOT RECOMMENDED', 'MAY', and 'OPTIONAL' in this document
-     are to be interpreted as described in BCP 14 (RFC 2119)
-     (RFC 8174) when, and only when, they appear in all
-     capitals, as shown here.";
+     This version of this YANG module is part of RFC 10011
+     (https://www.rfc-editor.org/info/rfc10011); see the RFC
+     itself for full legal notices.";
 
-  revision 2025-12-04 {
+  revision 2026-06-11 {
     description
-      "Initial version";
+      "Initial revision";
     reference
-      "RFC IIII: A YANG Data Model for RESTCONF Clients and Server";
+      "RFC 10011: A YANG Data Model for RESTCONF Clients and 
+                  Servers";
   }
 
   // Features
@@ -1738,50 +1673,50 @@ module ietf-restconf-server {
   }
 
   feature tcp-listen {
-    if-feature listen;
+    if-feature "listen";
     description
       "The 'tcp-listen' feature indicates that the RESTCONF server
-       supports opening a port to listen for incoming RESTCONF over
-       TCP client connections.  The TLS connections are expected to
-       be terminated by an external system.";
+       supports opening a port to listen for incoming RESTCONF-
+       over-TCP client connections.  The TLS connections are 
+       expected to be terminated by an external system.";
     reference
       "RFC 8040: RESTCONF Protocol";
   }
 
   feature tls-listen {
-    if-feature listen;
+    if-feature "listen";
     description
       "The 'tls-listen' feature indicates that the RESTCONF server
-       supports opening a port to listen for incoming RESTCONF over
-       TLS client connections, whereby the TLS connections are
-       terminated by the server itself.";
+       supports opening a port to listen for incoming RESTCONF-
+       over-TLS client connections, whereby the TLS connections 
+       are terminated by the server itself.";
     reference
       "RFC 8040: RESTCONF Protocol";
   }
 
   feature quic-listen {
-    if-feature listen;
+    if-feature "listen";
     description
       "The 'quic-listen' feature indicates that the RESTCONF server
-       supports opening a port to listen for incoming RESTCONF over
-       QUIC client connections.";
+       supports opening a port to listen for incoming RESTCONF-
+       over-QUIC client connections.";
     reference
       "RFC 8040: RESTCONF Protocol";
   }
 
-  feature callhome {
+  feature call-home {
     description
-      "The 'callhome' feature indicates that the RESTCONF server
+      "The 'call-home' feature indicates that the RESTCONF server
        supports initiating 'call home' connections to RESTCONF
        clients.";
     reference
       "RFC 8071: NETCONF Call Home and RESTCONF Call Home";
   }
 
-  feature tls-callhome {
-    if-feature callhome;
+  feature tls-call-home {
+    if-feature "call-home";
     description
-      "The 'tls-callhome' feature indicates that the RESTCONF server
+      "The 'tls-call-home' feature indicates that the RESTCONF server
        supports initiating 'call home' connections to RESTCONF
        clients using TLS per RFC 8071.";
     reference
@@ -1789,14 +1724,14 @@ module ietf-restconf-server {
   }
 
   feature central-restconf-server-supported {
-   description
+    description
       "The 'central-restconf-server-supported' feature indicates
        that the server supports the top-level 'restconf-server'
        node.
 
        This feature is needed as some servers may want to use
        features defined in this module, which requires this
-       module to be implemented, without having to support
+       module to be implemented without having to support
        the top-level 'restconf-server' node.";
   }
 
@@ -1822,10 +1757,8 @@ module ietf-restconf-server {
         "Specifies mappings through which RESTCONF client X.509
          certificates are used to determine a RESTCONF username.
          If no matching and valid cert-to-name list entry can be
-         found, then the RESTCONF server MUST close the connection,
+         found, then the RESTCONF server MUST close the connection
          and MUST NOT accept RESTCONF messages over it.";
-      reference
-        "RFC 7407: A YANG Data Model for SNMP Configuration.";
       uses x509c2n:cert-to-name {
         refine "cert-to-name/fingerprint" {
           mandatory false;
@@ -1833,9 +1766,10 @@ module ietf-restconf-server {
             "A 'fingerprint' value does not need to be specified
              when the 'cert-to-name' mapping is independent of
              fingerprint matching.  A 'cert-to-name' having no
-             fingerprint value will match any client certificate
-             and therefore SHOULD only be present at the end of
-             the user-ordered 'cert-to-name' list.";
+             fingerprint value will match any client
+             certificate; therefore, it SHOULD only be present
+             at the end of the user-ordered 'cert-to-name'
+             list.";
         }
       }
     }
@@ -1853,14 +1787,13 @@ module ietf-restconf-server {
         if-feature "tcp-listen";
         container http-over-tcp {
           description
-            "Configures RESTCONF server stack assuming that
-             TLS-termination is handled externally.";
+            "Configures the RESTCONF server stack assuming 
+             that TLS-termination is handled externally.";
           container external-endpoint {
-            presence
-              "Identifies that an external endpoint has been
-               configured.  This statement is present so the
-               mandatory descendant nodes do not imply that
-               this node must be configured.";
+            presence "Identifies that an external endpoint has
+               been configured.  This statement is present so
+               the mandatory descendant nodes do not imply
+               that this node must be configured.";
             description
               "Provides information for the external endpoint.";
             leaf address {
@@ -1877,8 +1810,8 @@ module ietf-restconf-server {
               default "443";
               description
                 "The port number on the external system clients
-                 connect to. This value may be used in server 
-                 generated messages sent to clients. If no value
+                 connect to.  This value may be used in server- 
+                 generated messages sent to clients.  If no value
                  is specified, the IANA-assigned well-known port
                  value for 'https' (443) is assumed.";
             }
@@ -1886,7 +1819,7 @@ module ietf-restconf-server {
               type uint8 {
                 range "1..max"; // non-zero
               }
-              default 1;
+              default "1";
               description
                 "The number of proxies in front of the RESTCONF
                  server, including the external endpoint.  This
@@ -1933,10 +1866,10 @@ module ietf-restconf-server {
         if-feature "tls-listen";
         container http-over-tls {
           description
-            "Configures RESTCONF server stack assuming that
-             TLS-termination is handled internally (i.e.,
-             not by a TLS-terminator in front of the RESTCONF
-             server).";
+            "Configures the RESTCONF server stack assuming 
+             that TLS-termination is handled internally 
+             (i.e., not by a TLS-terminator in front of 
+             the RESTCONF server).";
           container tcp-server-parameters {
             description
               "TCP-level server parameters.";
@@ -1971,10 +1904,10 @@ module ietf-restconf-server {
         if-feature "quic-listen";
         container http-over-quic {
           description
-            "Configures RESTCONF server stack assuming that
-             TLS-termination is handled internally (i.e.,
-             not by a TLS-terminator in front of the RESTCONF
-             server).";
+            "Configures the RESTCONF server stack assuming 
+             that TLS-termination is handled internally 
+             (i.e., not by a TLS-terminator in front of
+             the RESTCONF server).";
           container udp-server-parameters {
             description
               "UDP-level server parameters.";
@@ -2008,16 +1941,16 @@ module ietf-restconf-server {
     }
   }
 
-  grouping restconf-server-callhome-stack-grouping {
+  grouping restconf-server-call-home-stack-grouping {
     description
       "A grouping for configuring a RESTCONF server call home
-       protocol stack, for a single outbound connection.";
+       protocol stack for a single outbound connection.";
     choice transport {
       mandatory true;
       description
         "Selects between available transports.";
       case http-over-tls {
-        if-feature tls-callhome;
+        if-feature "tls-call-home";
         container http-over-tls {
           description
             "Configures RESTCONF server stack assuming that
@@ -2062,7 +1995,7 @@ module ietf-restconf-server {
        application that supports both 'listen' and call home
        protocol stacks for a multiplicity of connections.";
     container listen {
-      if-feature listen;
+      if-feature "listen";
       presence
         "Identifies that the server has been configured to
          listen for incoming client connections.  This statement
@@ -2089,7 +2022,7 @@ module ietf-restconf-server {
       }
     } // listen
     container call-home {
-      if-feature callhome;
+      if-feature "call-home";
       presence
         "Identifies that the server has been configured to initiate
          call home connections.  This statement is present so the
@@ -2118,14 +2051,14 @@ module ietf-restconf-server {
             ordered-by user;
             description
               "User-ordered list of endpoints for this RESTCONF
-               client.  Defining more than one enables high-
+               client.  Defining more than one enables high
                availability.";
             leaf name {
               type string;
               description
                 "An arbitrary name for this endpoint.";
             }
-            uses restconf-server-callhome-stack-grouping;
+            uses restconf-server-call-home-stack-grouping;
           }
         }
         container connection-type {
@@ -2143,12 +2076,12 @@ module ietf-restconf-server {
                    maintained.";
                 description
                   "Maintain a persistent connection to the RESTCONF
-                   client. If the connection goes down, immediately
-                   start trying to reconnect to the RESTCONF client,
+                   client.  If the connection goes down, immediately
+                   start trying to reconnect to the RESTCONF client
                    using the reconnection strategy.
 
-                   This connection type minimizes any RESTCONF
-                   client to RESTCONF server data-transfer delay,
+                   This connection type minimizes any RESTCONF-
+                   client-to-RESTCONF-server data-transfer delay,
                    albeit at the expense of holding resources
                    longer.";
               }
@@ -2163,7 +2096,7 @@ module ietf-restconf-server {
 
                    This connection type decreases resource
                    utilization, albeit with increased delay in
-                   RESTCONF client to RESTCONF server interactions.
+                   RESTCONF-client-to-RESTCONF-server interactions.
 
                    The RESTCONF client SHOULD gracefully close
                    the underlying TLS connection upon completing
@@ -2173,8 +2106,8 @@ module ietf-restconf-server {
                    to reestablish the connection.
 
                    Connections are established at the same start
-                   time regardless how long the previous connection
-                   stayed open.
+                   time regardless of how long the previous 
+                   connection stayed open.
 
                    In the case that the previous connection is
                    still active (i.e., the RESTCONF client has not
@@ -2198,18 +2131,18 @@ module ietf-restconf-server {
                   }
                   description
                     "Designates a timestamp before or after which a
-                     series of periodic connections are determined.
+                     series of periodic connections is determined.
                      The periodic connections occur at a whole
                      multiple interval from the anchor time.
 
                      If an 'anchor-time' is not provided, then the
                      server MAY implicitly set it to the time when
-                     this configuraton is applied (e.g., on boot).
+                     this configuration is applied (e.g., on boot).
 
-                     For example, for an anchor time is 15 minutes
+                     For example, for an anchor time of 15 minutes
                      past midnight and a period interval of 24 hours,
-                     then a periodic connection will occur 15 minutes
-                     past midnight everyday.";
+                     a periodic connection will occur 15 minutes
+                     past midnight every day.";
                 }
                 leaf idle-timeout {
                   type uint16;
@@ -2279,9 +2212,10 @@ module ietf-restconf-server {
             }
             default "3";
             description
-              "Specifies the number times the RESTCONF server tries
-               to connect to a specific endpoint before moving on to
-               the next endpoint in the list (round robin).";
+              "Specifies the number of times the RESTCONF server
+               tries to connect to a specific endpoint before 
+               moving on to the next endpoint in the list
+               (round robin).";
           }
         }
       }
@@ -2290,52 +2224,55 @@ module ietf-restconf-server {
 
   // Protocol accessible node for servers that implement this module.
   container restconf-server {
-    if-feature central-restconf-server-supported;
+    if-feature "central-restconf-server-supported";
     uses restconf-server-app-grouping;
     description
       "Top-level container for RESTCONF server configuration.";
   }
-}
-]]></artwork>
-        <t keepWithPrevious="true">&lt;CODE ENDS&gt;</t>
+}]]></sourcecode>
+
       </section>
     </section>
     <section>
       <name>Security Considerations</name>
       <section>
         <name>Considerations for the "ietf-restconf-client" YANG Module</name>
-        <t>This section is modeled after the template defined in <xref section="3.7.1" target="RFC8407"/>.</t>
-        <t>The "ietf-restconf-client" YANG module defines data nodes
-            that are designed to be accessed via YANG-based management
-            protocols, such as NETCONF <xref target="RFC6241"/> and RESTCONF
-            <xref target="RFC8040"/>.  The YANG-based management protocols
-            have to use a secure transport layer such as SSH <xref target="RFC4252"/>,
-            TLS <xref target="RFC8446"/>, or QUIC <xref target="RFC9000"/>.
-            The YANG-based management protocols also have to use mutual
+
+	
+        <t>This section is modeled after the template described in <xref section="3.7.1" target="RFC9907"/>.</t>
+        <t>The "ietf-restconf-client" YANG module defines a data model
+            that is designed to be accessed via YANG-based management
+            protocols, such as the Network Configuration Protocol (NETCONF) <xref target="RFC6241"/> and RESTCONF
+            <xref target="RFC8040"/>.  These YANG-based management protocols
+            (1) have to use a secure transport layer (e.g., Secure Shell (SSH) <xref target="RFC4252"/>, TLS <xref target="RFC9846"/>, and QUIC <xref target="RFC9000"/>) and (2) have to use mutual
             authentication.</t>
-        <t>The Network Access Control Model (NACM) <xref target="RFC8341"/>
-            provides the means to restrict access for particular users to a
-            pre-configured subset of all available protocol operations and
-            content.</t>
+        <t>The Network Configuration Access Control Model (NACM) <xref target="RFC8341"/>
+            provides the means to restrict access for particular NETCONF or RESTCONF users to a
+            preconfigured subset of all available NETCONF or RESTCONF protocol operations and
+        content.</t>
+
+	        <t>None of the writable data nodes defined in this YANG module are
+            considered sensitive or vulnerable in network environments.
+            The NACM "default-deny-write" extension has not been set for
+		any data nodes defined in this module.</t>
+
+		        <t>None of the readable data nodes defined in this YANG module are
+            considered sensitive or vulnerable in network environments.
+            The NACM "default-deny-all" extension has not been set for
+			any data nodes defined in this module.</t>
+			
+			<t>This YANG module does not define any RPCs, actions, or notifications; thus, the
+			security consideration for such is not provided here.</t>		
+	
         <t>This YANG module uses groupings from
             other YANG modules that define nodes that may be considered
-            sensitive or vulnerable in network environments.  Please
-            review the Security Considerations for dependent YANG modules
-            for information as to which nodes may be considered sensitive
-            or vulnerable in network environments.</t>
+            sensitive or vulnerable in network environments. For information as to which nodes may be considered
+sensitive or vulnerable in network environments, refer to the Security Considerations
+of <xref target="RFC9643"/>, <xref target="RFC10009"/>, and other RFCs defining nodes upon which this module
+relies.</t>
         <t>This YANG module uses groupings defined in
             other RFCs that define data nodes that do set the NACM "default-deny-all"
             and "default-deny-write" extensions.</t>
-        <t>None of the readable data nodes in this YANG module are
-            considered sensitive or vulnerable in network environments.
-            The NACM "default-deny-all" extension has not been set for
-            any data nodes defined in this module.</t>
-        <t>None of the writable data nodes in this YANG module are
-            considered sensitive or vulnerable in network environments.
-            The NACM "default-deny-write" extension has not been set for
-            any data nodes defined in this module.</t>
-        <t>This YANG module does not define any RPCs, actions, or notifications,
-            and thus the security consideration for such is not provided here.</t>
         <t>This YANG module enables the possibility for a RESTCONF client to open
             a port to listen for non-TLS-based RESTCONF Call Home connections
             <xref target="RFC8071"/>.  Whilst RESTCONF <xref target="RFC8040"/>
@@ -2345,38 +2282,37 @@ module ietf-restconf-server {
       </section>
       <section>
         <name>Considerations for the "ietf-restconf-server" YANG Module</name>
-        <t>This section is modeled after the template defined in <xref section="3.7.1" target="RFC8407"/>.</t>
-        <t>The "ietf-restconf-server" YANG module defines data nodes
-            that are designed to be accessed via YANG-based management
-            protocols, such as NETCONF <xref target="RFC6241"/> and RESTCONF
-            <xref target="RFC8040"/>.  The YANG-based management protocols
-            have to use a secure transport layer such as SSH <xref target="RFC4252"/>,
-            TLS <xref target="RFC8446"/>, or QUIC <xref target="RFC9000"/>.
-            The YANG-based management protocols also have to use mutual
-            authentication.</t>
-        <t>The Network Access Control Model (NACM) <xref target="RFC8341"/>
-            provides the means to restrict access for particular users to a
-            pre-configured subset of all available protocol operations and
-            content.</t>
+        <t>This section is modeled after the template described in <xref section="3.7.1" target="RFC9907"/>.</t>
+        <t>The "ietf-restconf-server" YANG module defines a data model
+            that is designed to be accessed via YANG-based management
+            protocols, such as the Network Configuration Protocol (NETCONF) <xref target="RFC6241"/> and RESTCONF
+            <xref target="RFC8040"/>.  These YANG-based management protocols
+            (1) have to use a secure transport layer (e.g., Secure Shell (SSH) Transport Layer <xref target="RFC4253"/>) and (2) have to use mutual
+            authentication (e.g., SSH Authentication Protocol <xref target="RFC4252"/>, TLS <xref target="RFC9846"/>, and QUIC <xref target="RFC9000"/>).</t>
+        <t>The Network Configuration Access Control Model (NACM) <xref target="RFC8341"/>
+            provides the means to restrict access for particular NETCONF or RESTCONF users to a
+            preconfigured subset of all available NETCONF or RESTCONF protocol operations and
+        content.</t>
+
+	        <t>None of the writable data nodes in this YANG module are
+            considered sensitive or vulnerable in network environments.
+            The NACM "default-deny-write" extension has not been set for
+		any data nodes defined in this module.</t>
+	        <t>None of the readable data nodes in this YANG module are
+            considered sensitive or vulnerable in network environments.
+            The NACM "default-deny-all" extension has not been set for
+		any data nodes defined in this module.</t>
+		
+       <t>This YANG module does not define any RPCs, actions, or notifications; thus, the
+			security consideration for such is not provided here.</t>
+		
         <t>This YANG module uses groupings from
             other YANG modules that define nodes that may be considered
-            sensitive or vulnerable in network environments.  Please
-            review the Security Considerations for dependent YANG modules
-            for information as to which nodes may be considered sensitive
+            sensitive or vulnerable in network environments.  Refer to the Security Considerations of <xref target="RFC7407" format="default"/>, <xref target="RFC9643" format="default"/>, <xref target="RFC9645" format="default"/>, <xref target="RFC9984" format="default" />, and <xref target="RFC10009" format="default"/> for information as to which nodes may be considered sensitive
             or vulnerable in network environments.</t>
         <t>This YANG module uses groupings defined in
             other RFCs that define data nodes that do set the NACM "default-deny-all"
             and "default-deny-write" extensions.</t>
-        <t>None of the readable data nodes in this YANG module are
-            considered sensitive or vulnerable in network environments.
-            The NACM "default-deny-all" extension has not been set for
-            any data nodes defined in this module.</t>
-        <t>None of the writable data nodes in this YANG module are
-            considered sensitive or vulnerable in network environments.
-            The NACM "default-deny-write" extension has not been set for
-            any data nodes defined in this module.</t>
-        <t>This YANG module does not define any RPCs, actions, or notifications,
-            and thus the security consideration for such is not provided here.</t>
         <t>This YANG module enables the possibility for a RESTCONF server to open
             a port to listen for non-TLS-based RESTCONF connections.  Whilst RESTCONF
             <xref target="RFC8040"/> requires HTTPS, this configuration is provided 
@@ -2388,655 +2324,181 @@ module ietf-restconf-server {
     <section>
       <name>IANA Considerations</name>
       <section>
-        <name>The "IETF XML" Registry</name>
-        <t>This document registers two URIs in the "ns" subregistry of the IETF XML
-          Registry <xref target="RFC3688"/>.  Following the format in
-          <xref target="RFC3688"/>, the following registrations are
-          requested:</t>
-        <artwork><![CDATA[
-   URI: urn:ietf:params:xml:ns:yang:ietf-restconf-client
-   Registrant Contact: The IESG
-   XML: N/A, the requested URI is an XML namespace.
+        <name>The IETF XML Registry</name>
+        <t>IANA has registered two URIs in the "ns" registry within the "IETF XML
+          Registry" group <xref target="RFC3688"/> as follows:</t>
 
-   URI: urn:ietf:params:xml:ns:yang:ietf-restconf-server
-   Registrant Contact: The IESG
-   XML: N/A, the requested URI is an XML namespace.
-]]></artwork>
+<dl spacing="compact" newline="false">
+   <dt>URI:</dt><dd>urn:ietf:params:xml:ns:yang:ietf-restconf-client</dd>
+   <dt>Registrant Contact:</dt><dd>The IESG</dd>
+   <dt>XML:</dt><dd>N/A; the requested URI is an XML namespace.</dd>
+</dl>
+<dl spacing="compact" newline="false">
+   <dt>URI:</dt><dd>urn:ietf:params:xml:ns:yang:ietf-restconf-server</dd>
+   <dt>Registrant Contact:</dt><dd>The IESG</dd>
+   <dt>XML:</dt><dd>N/A; the requested URI is an XML namespace.</dd>
+</dl>
       </section>
       <section>
-        <name>The "YANG Module Names" Registry</name>
-        <t>This document registers two YANG modules in the
-          YANG Module Names registry <xref target="RFC6020"/>.
-          Following the format in <xref target="RFC6020"/>, the
-          following registrations are requested:</t>
-        <artwork><![CDATA[
-   Name:         ietf-restconf-client
-   Namespace:    urn:ietf:params:xml:ns:yang:ietf-restconf-client
-   Prefix:       rcc
-   Reference:    RFC IIII
-   Maintained by IANA:  N
-
-   Name:         ietf-restconf-server
-   Namespace:    urn:ietf:params:xml:ns:yang:ietf-restconf-server
-   Prefix:       rcs
-   Reference:    RFC IIII
-   Maintained by IANA:  N
-]]></artwork>
+        <name>The YANG Module Names Registry</name>
+        <t>IANA has registered two YANG modules in the
+          "YANG Module Names" registry <xref target="RFC6020"/> within the "YANG Parameters" registry group as follows:
+          </t>
+<dl spacing="compact" newline="false">
+   <dt>Name:</dt><dd>ietf-restconf-client</dd>
+   <dt>Maintained by IANA?</dt><dd>N</dd>
+   <dt>Namespace:</dt><dd>urn:ietf:params:xml:ns:yang:ietf-restconf-client</dd>
+   <dt>Prefix:</dt><dd>rcc</dd>
+   <dt>Reference:</dt><dd>RFC 10011</dd>
+</dl>
+<dl spacing="compact" newline="false">
+   <dt>Name:</dt><dd>ietf-restconf-server</dd>
+   <dt>Maintained by IANA?</dt><dd>N</dd>
+   <dt>Namespace:</dt><dd>urn:ietf:params:xml:ns:yang:ietf-restconf-server</dd>
+   <dt>Prefix:</dt><dd>rcs</dd>
+   <dt>Reference:</dt><dd>RFC 10011</dd>
+</dl>
       </section>
     </section>
   </middle>
   <back>
+      <displayreference target="I-D.ietf-netmod-system-config" to="SYSTEM-CONFIG" />
     <references>
       <name>References</name>
       <references>
         <name>Normative References</name>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6020.xml"/>
-        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6991.xml"/>
+        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9911.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7407.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7950.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8040.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8071.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml"/>
+        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8341.xml"/>
+		<xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8792.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9642.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9643.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9645.xml"/>
-        <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-http-client-server.xml"/>
+        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9984.xml"/>
+
+<!-- [RFC10009]
+draft-ietf-netconf-http-client-server-33 
+companion doc
+-->
+<reference anchor="RFC10009" target="https://www.rfc-editor.org/info/rfc10009">
+  <front>
+      <title>YANG Groupings for HTTP Clients and HTTP Servers</title>
+      <author initials="K." surname="Watsen" fullname="Kent Watsen">
+         <organization>Watsen Networks</organization>
+      </author>
+    <date month='July' year='2026'/>
+  </front>
+  <seriesInfo name="RFC" value="10009"/>
+  <seriesInfo name="DOI" value="10.17487/RFC10009"/>
+</reference>
       </references>
       <references>
         <name>Informative References</name>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.3688.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.4252.xml"/>
+        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.4253.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6241.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8340.xml"/>
-        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8341.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8342.xml"/>
-        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8407.xml"/>
-        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8446.xml"/>
+        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9907.xml"/>
+        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9846.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9000.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9640.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9641.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9644.xml"/>
-        <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-netconf-client-server.xml"/>
-        <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-restconf-client-server.xml"/>
-        <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netmod-system-config.xml"/>
+	
+<!-- [I-D.ietf-netconf-netconf-client-server]
+draft-ietf-netconf-netconf-client-server-41
+RFC-to-be 10010
+-->
+<reference anchor="RFC10010" target="https://www.rfc-editor.org/info/rfc10010">
+  <front>
+      <title>A YANG Data Model for NETCONF Clients and Servers</title>
+      <author initials="K." surname="Watsen" fullname="Kent Watsen">
+         <organization>Watsen Networks</organization>
+      </author>
+    <date month='July' year='2026'/>
+  </front>
+  <seriesInfo name="RFC" value="10010"/>
+  <seriesInfo name="DOI" value="10.17487/RFC10010"/>
+</reference>
+
+
+<!-- [I-D.ietf-netmod-system-config]
+draft-ietf-netmod-system-config-20
+Companion document YYY3: in RE state as of 5/26/25
+[KC] Comp. doc? Is not listed as C463 and does not ref any of the C463 docs
+-->
+<xi:include href="https://bib.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-netmod-system-config.xml"/>
+
+<!--<reference anchor="RFCYYY3" target="https://www.rfc-editor.org/info/rfcYYY3">
+  <front>
+    <title>System-Defined Configuration</title>
+    <author fullname="Qiufang Ma" initials="Q." surname="Ma" role="editor">
+      <organization>Huawei</organization>
+    </author>
+    <author fullname="Qin Wu" initials="Q." surname="Wu">
+      <organization>Huawei</organization>
+    </author>
+    <author fullname="Chong Feng" initials="C." surname="Feng"/>
+    <date month='June' year='2026'/>
+  </front>
+  <seriesInfo name="RFC" value="YYY3"/>
+  <seriesInfo name="DOI" value="10.17487/RFCYYY3"/>
+</reference>
+-->
+
+<reference anchor="W3C.REC-xml-20081126"
+target="https://www.w3.org/TR/2008/REC-xml-20081126/">
+  <front>
+    <title>Extensible Markup Language (XML) 1.0                                                                                 
+    (Fifth Edition)</title>
+    <author initials="T." surname="Bray" fullname="Tim Bray"/>
+    <author initials="J." surname="Paoli" fullname="Jean Paoli"/>
+    <author initials="C.M." surname="Sperberg-McQueen" fullname="C. M. Sperberg-McQueen"/>
+    <author initials="E." surname="Maler" fullname="Eve Maler"/>
+    <author initials="F." surname="Yergeau" fullname="François Yergeau"/>
+    <date month="November" year="2008"/>
+  </front>
+<seriesInfo name="World Wide Web Consortium Recommendation" value="REC-xml-20081126"/>
+</reference>
+		  
       </references>
+      
     </references>
-    <section anchor="change-log">
-      <name>Change Log</name>
-      <section>
-        <name>00 to 01</name>
-        <ul spacing="normal">
-          <li>
-            <t>Renamed "keychain" to "keystore".</t>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <name>01 to 02</name>
-        <ul spacing="normal">
-          <li>
-            <t>Filled in previously missing 'ietf-restconf-client' module.</t>
-          </li>
-          <li>
-            <t>Updated the ietf-restconf-server module to accommodate new
-            grouping 'ietf-tls-server-grouping'.</t>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <name>02 to 03</name>
-        <ul spacing="normal">
-          <li>
-            <t>Refined use of tls-client-grouping to add a must statement
-               indicating that the TLS client must specify a client-certificate.</t>
-          </li>
-          <li>
-            <t>Changed restconf-client??? to be a grouping (not a container).</t>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <name>03 to 04</name>
-        <ul spacing="normal">
-          <li>
-            <t>Added RFC 8174 to Requirements Language Section.</t>
-          </li>
-          <li>
-            <t>Replaced refine statement in ietf-restconf-client
-               to add a mandatory true.</t>
-          </li>
-          <li>
-            <t>Added refine statement in ietf-restconf-server
-               to add a must statement.</t>
-          </li>
-          <li>
-            <t>Now there are containers and groupings, for both the
-               client and server models.</t>
-          </li>
-          <li>
-            <t>Now tree diagrams reference ietf-netmod-yang-tree-diagrams</t>
-          </li>
-          <li>
-            <t>Updated examples to inline key and certificates (no longer 
-               a leafref to keystore)</t>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <name>04 to 05</name>
-        <ul spacing="normal">
-          <li>
-            <t>Now tree diagrams reference ietf-netmod-yang-tree-diagrams</t>
-          </li>
-          <li>
-            <t>Updated examples to inline key and certificates (no longer
-               a leafref to keystore)</t>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <name>05 to 06</name>
-        <ul spacing="normal">
-          <li>
-            <t>Fixed change log missing section issue.</t>
-          </li>
-          <li>
-            <t>Updated examples to match latest updates to the crypto-types,
-               trust-anchors, and keystore drafts.</t>
-          </li>
-          <li>
-            <t>Reduced line length of the YANG modules to fit within 69 columns.</t>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <name>06 to 07</name>
-        <ul spacing="normal">
-          <li>
-            <t>removed "idle-timeout" from "persistent" connection config.</t>
-          </li>
-          <li>
-            <t>Added "random-selection" for reconnection-strategy's "starts-with" enum.</t>
-          </li>
-          <li>
-            <t>Replaced "connection-type" choice default (persistent) with "mandatory true".</t>
-          </li>
-          <li>
-            <t>Reduced the periodic-connection's "idle-timeout" from 5 to 2 minutes.</t>
-          </li>
-          <li>
-            <t>Replaced reconnect-timeout with period/anchor-time combo.</t>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <name>07 to 08</name>
-        <ul spacing="normal">
-          <li>
-            <t>Modified examples to be compatible with new crypto-types algs</t>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <name>08 to 09</name>
-        <ul spacing="normal">
-          <li>
-            <t>Corrected use of "mandatory true" for "address" leafs.</t>
-          </li>
-          <li>
-            <t>Updated examples to reflect update to groupings defined in the keystore draft.</t>
-          </li>
-          <li>
-            <t>Updated to use groupings defined in new TCP and HTTP drafts.</t>
-          </li>
-          <li>
-            <t>Updated copyright date, boilerplate template, affiliation, and folding algorithm.</t>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <name>09 to 10</name>
-        <ul spacing="normal">
-          <li>
-            <t>Reformatted YANG modules.</t>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <name>10 to 11</name>
-        <ul spacing="normal">
-          <li>
-            <t>Adjusted for the top-level "demux container" added to groupings
-                imported from other modules.</t>
-          </li>
-          <li>
-            <t>Added "must" expressions to ensure that keepalives are not configured
-                for "periodic" connections.</t>
-          </li>
-          <li>
-            <t>Updated the boilerplate text in module-level "description" statement
-                to match copyeditor convention.</t>
-          </li>
-          <li>
-            <t>Moved "expanded" tree diagrams to the Appendix.</t>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <name>11 to 12</name>
-        <ul spacing="normal">
-          <li>
-            <t>Removed the 'must' statement limiting keepalives in periodic
-              connections.</t>
-          </li>
-          <li>
-            <t>Updated models and examples to reflect removal of the "demux"
-              containers in the imported models.</t>
-          </li>
-          <li>
-            <t>Updated the "periodic-connnection" description statements to
-              better describe behavior when connections are not closed
-              gracefully.</t>
-          </li>
-          <li>
-            <t>Updated text to better reference where certain examples come from
-              (e.g., which Section in which draft).</t>
-          </li>
-          <li>
-            <t>In the server model, commented out the "must 'pinned-ca-certs or 
-              pinned-client-certs'" statement to reflect change made in the
-              TLS draft whereby the trust anchors MAY be defined externally.</t>
-          </li>
-          <li>
-            <t>Replaced the 'listen', 'initiate', and 'call-home' features
-              with boolean expressions.</t>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <name>12 to 13</name>
-        <ul spacing="normal">
-          <li>
-            <t>Updated to reflect changes in trust-anchors drafts
-              (e.g., s/trust-anchors/truststore/g + s/pinned.//)</t>
-          </li>
-          <li>
-            <t>In ietf-restconf-server, Added 'http-listen' (not https-listen) choice, to support
-              case when server is behind a TLS-terminator.</t>
-          </li>
-          <li>
-            <t>Refactored server module to be more like other 'server' models.  If folks like it, will
-              also apply to the client model, as well as to both the netconf client/server models.  Now
-              the 'restconf-server-grouping' is just the RC-specific bits (i.e., the "demux" container
-              minus the container), 'restconf-server-[listen|callhome]-stack-grouping' is the protocol
-              stack for a single connection, and 'restconf-server-app-grouping' is effectively what
-              was before (both listen+callhome for many inbound/outbound endpoints).</t>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <name>13 to 14</name>
-        <ul spacing="normal">
-          <li>
-            <t>Updated examples to reflect ietf-crypto-types change
-              (e.g., identities --&gt; enumerations)</t>
-          </li>
-          <li>
-            <t>Adjusting from change in TLS client model (removing the top-level
-              'certificate' container).</t>
-          </li>
-          <li>
-            <t>Added "external-endpoint" to the "http-listen" choice in ietf-restconf-server.</t>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <name>14 to 15</name>
-        <ul spacing="normal">
-          <li>
-            <t>Added missing "or https-listen" clause in a "must" expression.</t>
-          </li>
-          <li>
-            <t>Refactored the client module similar to how the server module was refactored in -13.  Now
-              the 'restconf-client-grouping' is just the RC-specific bits, the 
-              'restconf-client-[initiate|listen]-stack-grouping' is the protocol
-              stack for a single connection, and 'restconf-client-app-grouping' is effectively what
-              was before (both listen+callhome for many inbound/outbound endpoints).</t>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <name>15 to 16</name>
-        <ul spacing="normal">
-          <li>
-            <t>Added refinement to make "cert-to-name/fingerprint" be mandatory false.</t>
-          </li>
-          <li>
-            <t>Commented out refinement to "tls-server-grouping/client-authentication"
-                until a better "must" expression is defined.</t>
-          </li>
-          <li>
-            <t>Updated restconf-client example to reflect that http-client-grouping no
-                longer has a "protocol-version" leaf.</t>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <name>16 to 17</name>
-        <ul spacing="normal">
-          <li>
-            <t>Updated examples to include the "*-key-format" nodes.</t>
-          </li>
-          <li>
-            <t>Updated examples to remove the "required" nodes.</t>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <name>17 to 18</name>
-        <ul spacing="normal">
-          <li>
-            <t>Updated examples to reflect new "bag" addition to truststore.</t>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <name>18 to 19</name>
-        <ul spacing="normal">
-          <li>
-            <t>Updated examples to remove the 'algorithm' nodes.</t>
-          </li>
-          <li>
-            <t>Updated examples to reflect the new TLS keepalives structure.</t>
-          </li>
-          <li>
-            <t>Removed the 'protocol-versions' node from the restconf-server examples.</t>
-          </li>
-          <li>
-            <t>Added a "Note to Reviewers" note to first page.</t>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <name>19 to 20</name>
-        <ul spacing="normal">
-          <li>
-            <t>Moved and changed "must" statement so that either TLS *or* HTTP auth must be configured.</t>
-          </li>
-          <li>
-            <t>Expanded "Data Model Overview section(s) [remove "wall" of tree diagrams].</t>
-          </li>
-          <li>
-            <t>Updated the Security Considerations section.</t>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <name>20 to 21</name>
-        <ul spacing="normal">
-          <li>
-            <t>Cleaned up titles in the IANA Consideratons section</t>
-          </li>
-          <li>
-            <t>Fixed issues found by the SecDir review of the "keystore" draft.</t>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <name>21 to 22</name>
-        <ul spacing="normal">
-          <li>
-            <t>Addressed comments raised by YANG Doctor in the ct/ts/ks drafts.</t>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <name>22 to 23</name>
-        <ul spacing="normal">
-          <li>
-            <t>Further clarified why some 'presence' statements are present.</t>
-          </li>
-          <li>
-            <t>Addressed nits found in YANG Doctor reviews.</t>
-          </li>
-          <li>
-            <t>Aligned modules with `pyang -f` formatting.</t>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <name>23 to 24</name>
-        <ul spacing="normal">
-          <li>
-            <t>Removed Appendix A with fully-expanded tree diagrams.</t>
-          </li>
-          <li>
-            <t>Replaced "base64encodedvalue==" with "BASE64VALUE=" in examples.</t>
-          </li>
-          <li>
-            <t>Minor editorial nits</t>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <name>24 to 25</name>
-        <ul spacing="normal">
-          <li>
-            <t>Fixed up the 'WG Web' and 'WG List' lines in YANG module(s)</t>
-          </li>
-          <li>
-            <t>Fixed up copyright (i.e., s/Simplified/Revised/) in YANG module(s)</t>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <name>25 to 26</name>
-        <ul spacing="normal">
-          <li>
-            <t>Added feature "central-restconf-client-supported" to top-level node "restconf-client".</t>
-          </li>
-          <li>
-            <t>Added feature "central-restconf-server-supported" to top-level node "restconf-server".</t>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <name>26 to 27</name>
-        <ul spacing="normal">
-          <li>
-            <t>Updated per Shepherd reviews impacting the suite of drafts.</t>
-          </li>
-          <li>
-            <t>Added "max-wait" leaf to the "reconnect-strategy" nodes.</t>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <name>27 to 28</name>
-        <ul spacing="normal">
-          <li>
-            <t>Updated per Shepherd reviews impacting the suite of drafts.</t>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <name>28 to 29</name>
-        <ul spacing="normal">
-          <li>
-            <t>Updated (implicitly) via Tom Petch reviews.</t>
-          </li>
-          <li>
-            <t>Fixed pattern statement for "leaf anchor-time".</t>
-          </li>
-          <li>
-            <t>Updated examples to use IETF-sanctioned values.</t>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <name>29 to 30</name>
-        <ul spacing="normal">
-          <li>
-            <t>Addresses AD review comments.</t>
-          </li>
-          <li>
-            <t>Added note to Editor to fix line foldings.</t>
-          </li>
-          <li>
-            <t>Removed "Conventions" section as there are no "BASE64VALUE=" values used in draft.</t>
-          </li>
-          <li>
-            <t>Removed restconf-client-grouping, since it was empty.</t>
-          </li>
-          <li>
-            <t>Removed erronious statement "client-identity-mappings" must be enabled by a "feature".</t>
-          </li>
-          <li>
-            <t>Added Security Considerations text to also look a SC-section from imported modules.</t>
-          </li>
-          <li>
-            <t>Removed "A wrapper around the foobar parameters to avoid name collisions" text.</t>
-          </li>
-          <li>
-            <t>Added container "endpoints" to wrap list "endpoint".</t>
-          </li>
-          <li>
-            <t>Fixed if-feature "https-listen" to if-feature "https-call-home".</t>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <name>30 to 31</name>
-        <ul spacing="normal">
-          <li>
-            <t>Addresses AD review by Rob Wilton.</t>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <name>31 to 32</name>
-        <ul spacing="normal">
-          <li>
-            <t>Addresses 1st-round of IESG reviews.</t>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <name>32 to 34</name>
-        <ul spacing="normal">
-          <li>
-            <t>Addresses issues found in OpsDir review of the ssh-client-server draft.</t>
-          </li>
-          <li>
-            <t>s/defines/presents/ in a few places.</t>
-          </li>
-          <li>
-            <t>Add refs to where the 'operational' and 'system' datastores are defined.</t>
-          </li>
-          <li>
-            <t>Renamed Security Considerations section s/Template for/Considerations for/</t>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <name>34 to 36</name>
-        <ul spacing="normal">
-          <li>
-            <t>Nothing changed.  Only bumped for automation...</t>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <name>38 to 39</name>
-        <ul spacing="normal">
-          <li>
-            <t>Aligned with updates to 'http-client-server' per IESG review.</t>
-          </li>
-          <li>
-            <t>Renamed some 'feature' statements to be more like http-client-server</t>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <name>39 to 40</name>
-        <ul spacing="normal">
-          <li>
-            <t>Updated 2nd paragraph in Security Considerations section to match RFC Editor's version for other drafts in the suite of client-server drafts.</t>
-          </li>
-          <li>
-            <t>Added a logically-impossible 'if-feature' statement to the 'uri' components from the 'http-client-grouping', from the 'ietf-http-client' YANG module.</t>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <name>40 to 41</name>
-        <ul spacing="normal">
-          <li>
-            <t>In both the client and server YANG modules, added "if-feature" statements
-                to dependant features.  This oversight was identified by a WG member.</t>
-          </li>
-          <li>
-            <t>In the server YANG module, added "leaf client-cert-var" to the "external-endpoint"
-                container to enable the HTTP header variable used by an external TLS terminator
-                to be configured.  The need for this was identified by an ISP deploying a
-                RESTCONF server behind an AWS ALB (application load balancer) that hardcodes
-                an Amazon-specific variable name.</t>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <name>41 to 42</name>
-        <ul spacing="normal">
-          <li>
-            <t>Updated Security Considerations section per Mike Bishop's review.  Now more
-                prominently calls out how HTTP (w/o TLS) may be configured, despite being
-                required by RESTCONF [RFC 8040], to support external TLS-terminators (e.g.,
-                load balancers).</t>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <name>42 to 43</name>
-        <ul spacing="normal">
-          <li>
-            <t>Updated to reflect some of Med's AD-review comments.</t>
-          </li>
-          <li>
-            <t>Fixed Security Considerations section update made in -42.</t>
-          </li>
-          <li>
-            <t>Added 'trusted-proxy-count' to the "external-endpoint" node.</t>
-          </li>
-        </ul>
-      </section>
-    </section>
+
     <section numbered="false">
       <name>Acknowledgements</name>
       <t>The authors would like to thank the following for
       lively discussions on list and in the halls (ordered
       by first name):
-      Alan Luchuk,
-      Andy Bierman,
-      Balázs Kovács,
-      Benoit Claise,
-      Bert Wijnen
-      David Lamparter,
-      Jürgen Schönwälder,
-      Ladislav Lhotka,
-      Martin Björklund,
-      Med Boucladair,
-      Qiufang Ma,
-      Mehmet Ersue,
-      Michal Vaško,
-      Mike Bishop,
-      Phil Shafer,
-      Qiufang Ma,
-      Radek Krejci,
-      Ramkumar Dhanapal,
-      Rob Wilton,
-      Sean Turner,
-      and Tom Petch.</t>
+      <contact fullname="Alan Luchuk"/>,
+      <contact fullname="Andy Bierman"/>,
+      <contact fullname="Balázs Kovács"/>,
+      <contact fullname="Benoit Claise"/>,
+      <contact fullname="Bert Wijnen"/>,
+      <contact fullname="David Lamparter"/>,
+      <contact fullname="Jürgen Schönwälder"/>,
+      <contact fullname="Ladislav Lhotka"/>,
+      <contact fullname="Martin Björklund"/>,
+      <contact fullname="Med Boucadair"/>,
+      <contact fullname="Qiufang Ma"/>,
+      <contact fullname="Mehmet Ersue"/>,
+      <contact fullname="Michal Vaško"/>,
+      <contact fullname="Mike Bishop"/>,
+      <contact fullname="Phil Shafer"/>,
+      <contact fullname="Qiufang Ma"/>,
+      <contact fullname="Radek Krejci"/>,
+      <contact fullname="Ramkumar Dhanapal"/>,
+      <contact fullname="Rob Wilton"/>,
+      <contact fullname="Sean Turner"/>,
+      and <contact fullname="Tom Petch"/>.</t>
     </section>
   </back>
 </rfc>
