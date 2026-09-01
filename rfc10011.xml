@@ -39,7 +39,7 @@
           RESTCONF <xref target="RFC8040"/> and RESTCONF Call Home
           connections <xref target="RFC8071"/>.</t>
       <t>Both modules support HTTPS, RESTCONF's required transport, whether
-          by TLS <xref target="RFC8446"/> or QUIC <xref target="RFC9000"/>.
+          by TLS <xref target="RFC9846"/> or QUIC <xref target="RFC9000"/>.
           The YANG module configuring RESTCONF servers additionally
           supports HTTP, enabling the RESTCONF server to be deployed
           behind a TLS-terminator.</t>
@@ -2245,7 +2245,7 @@ module ietf-restconf-server {
             protocols, such as the Network Configuration Protocol (NETCONF) <xref target="RFC6241"/> and RESTCONF
             <xref target="RFC8040"/>.  These YANG-based management protocols
             (1) have to use a secure transport layer (e.g., Secure Shell (SSH) Transport Layer <xref target="RFC4253"/>) and (2) have to use mutual
-            authentication (e.g., SSH Authentication Protocol <xref target="RFC4252"/>, TLS <xref target="RFC8446"/>, and QUIC <xref target="RFC9000"/>).</t>
+            authentication (e.g., SSH Authentication Protocol <xref target="RFC4252"/>, TLS <xref target="RFC9846"/>, and QUIC <xref target="RFC9000"/>).</t>
         <t>The Network Configuration Access Control Model (NACM) <xref target="RFC8341"/>
             provides the means to restrict access for particular NETCONF or RESTCONF users to a
             preconfigured subset of all available NETCONF or RESTCONF protocol operations and
@@ -2288,7 +2288,7 @@ relies.</t>
             protocols, such as the Network Configuration Protocol (NETCONF) <xref target="RFC6241"/> and RESTCONF
             <xref target="RFC8040"/>.  These YANG-based management protocols
             (1) have to use a secure transport layer (e.g., Secure Shell (SSH) Transport Layer <xref target="RFC4253"/>) and (2) have to use mutual
-            authentication (e.g., SSH Authentication Protocol <xref target="RFC4252"/>, TLS <xref target="RFC8446"/>, and QUIC <xref target="RFC9000"/>).</t>
+            authentication (e.g., SSH Authentication Protocol <xref target="RFC4252"/>, TLS <xref target="RFC9846"/>, and QUIC <xref target="RFC9000"/>).</t>
         <t>The Network Configuration Access Control Model (NACM) <xref target="RFC8341"/>
             provides the means to restrict access for particular NETCONF or RESTCONF users to a
             preconfigured subset of all available NETCONF or RESTCONF protocol operations and
@@ -2407,7 +2407,7 @@ companion doc
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8340.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8342.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9907.xml"/>
-        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8446.xml"/>
+        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9846.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9000.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9640.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9641.xml"/>
